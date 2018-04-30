@@ -33,7 +33,7 @@ class Case {
 		void set_bact(Bacterie* bact);
 
 		//METHODS
-		//void mort_bact() ;
+		void mort_bact() ;
 		
 	protected :
 		float x_;
