@@ -12,6 +12,9 @@ using namespace std;
 class Case {
 	
 	public : 
+		//CONSTRUCTEUR
+		Case(int x, int y, int Ainit);
+		
 		//GETTERS
 		float get_x();
 		float get_y();

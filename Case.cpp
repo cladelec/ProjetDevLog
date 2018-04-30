@@ -7,6 +7,12 @@
 
 using namespace std;
 
+//CONSTRUCTEUR
+Case::Case(int x, int y, int Ainit) : x_(x), y_(y), B_(0), C_(0) {
+	A_=Ainit;
+	bact_=nullptr;
+}
+
 //GETTERS
 float Case::get_x() {
 	return x_;
