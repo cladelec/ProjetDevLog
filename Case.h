@@ -19,6 +19,12 @@ class Case {
 		float get_B();
 		float get_C();
 		Bacterie* get_bact();
+		
+		//SETTERS
+		void set_A(float a);
+		void set_B(float b);
+		void set_C(float c);
+		void set_bact(Bacterie* bact);
 	
 	protected :
 		float x_;

@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 //GETTERS
 float Case::get_x() {
 	return x_;
@@ -32,3 +31,21 @@ float Case::get_C() {
 Bacterie* Case::get_bact() {
 	return bact_;
 }
+
+//SETTERS
+void Case::set_A(float a){
+	A_=a;
+}
+
+void Case::set_B(float b){
+	B_=b;
+}
+
+void Case::set_C(float c){
+	C_=c;
+}
+
+void Case::set_bact(Bacterie* bact){
+	bact_=bact;
+}
+	
