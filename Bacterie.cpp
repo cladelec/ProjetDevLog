@@ -8,5 +8,12 @@ Bacterie::Bacterie() {
 	Wmin_=1;
 }
 
-//Destructor 
-Bacterie::~Bacterie() = default;
+//Getters
+float Bacterie::Pdeath() { 
+	return Pdeath_; 
+}
+
+float Bacterie::Pmut() { 
+	return Pmut_; 
+}
+

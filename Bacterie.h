@@ -6,15 +6,18 @@ class Bacterie {
 	public : 
 		//Constructor
 		Bacterie(); 
-		//Destructor 
-		virtual ~Bacterie();
+	
+
 		//Methods
-		virtual void metaboliser()=0;
+		virtual void metaboliser(float * A, float * B, float * C)=0;
+		//Getters 
+		float Pdeath();
+		float Pmut();
 		
 	protected : 
-		float Pdeath; 
-		float Pmut; 
-		float Wmin; 
+		float Pdeath_; 
+		float Pmut_; 
+		float Wmin_; 
 		float w_;
 		
 		float A_;
