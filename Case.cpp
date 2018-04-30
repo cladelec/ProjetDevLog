@@ -8,10 +8,10 @@
 using namespace std;
 
 //CONSTRUCTEUR
-Case::Case(int x, int y, int Ainit) : x_(x), y_(y), B_(0), C_(0) {
-	A_=Ainit;
-	bact_=nullptr;
-}
+Case::Case(int x, int y, int Ainit) : x_(x), y_(y), B_(0), C_(0), A_(Ainit), bact_(nullptr) {}
+
+//DESTRUCTEUR
+Case::~Case()=default;
 
 //GETTERS
 float Case::get_x() {
@@ -54,4 +54,9 @@ void Case::set_C(float c){
 void Case::set_bact(Bacterie* bact){
 	bact_=bact;
 }
+
+//METHODS
+/*void Case::mort_bact() {
+	
+}*/
 	
