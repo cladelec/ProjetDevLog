@@ -5,4 +5,5 @@
 class Bacterie { 
 
 
-}
+};
+#endif 
