@@ -12,6 +12,12 @@ using namespace std;
 class Case {
 	
 	public : 
+		//CONSTRUCTEUR
+		Case(int x, int y, int Ainit);
+		
+		//DESTRUCTEUR
+		~Case();
+		
 		//GETTERS
 		float get_x();
 		float get_y();
@@ -25,7 +31,10 @@ class Case {
 		void set_B(float b);
 		void set_C(float c);
 		void set_bact(Bacterie* bact);
-	
+
+		//METHODS
+		//void mort_bact() ;
+		
 	protected :
 		float x_;
 		float y_;	
