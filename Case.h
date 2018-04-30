@@ -5,13 +5,20 @@
 #include <cstdio>
 #include <cstdlib>
 
+#include "Bacterie.h"
+
 using namespace std;
 
 class Case {
 	
-	//public : 
-
-	
+	public : 
+		//GETTERS
+		float get_x();
+		float get_y();
+		float get_A();
+		float get_B();
+		float get_C();
+		Bacterie* get_bact();
 	
 	protected :
 		float x_;
@@ -19,6 +26,7 @@ class Case {
 		float A_;
 		float B_;
 		float C_;
+		Bacterie* bact_;
 		
 	
 } ;
