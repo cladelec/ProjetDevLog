@@ -6,4 +6,5 @@
 class BactS : public Bacterie { 
 
 
-}
+}; 
+#endif 

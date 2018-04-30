@@ -7,4 +7,5 @@ class BactL : public Bacterie {
 
 
 
-}
+};
+#endif 
