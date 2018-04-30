@@ -11,7 +11,7 @@ BactL::BactL(float Pm, float Pd, float w, float Raa, float Rab) : Bacterie() {
 
 //Methods
 void BactL::metaboliser(float * A, float * B, float * C) { 
-	*A=-(*A)*Raa_; 
+	*A=*A-(*A)*Raa_; 
 	A_=A_+(*A)*Raa_-A_*Rab_;
 	B_=B_+A_*Rab_;
 }
