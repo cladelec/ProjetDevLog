@@ -7,6 +7,8 @@
 
 #include "Bacterie.h"
 #include "Case.h"
+#include "BactL.h"
+#include "BactS.h"
 
 #include <vector>
 
@@ -17,7 +19,7 @@ class Grille {
 	public :
 
 		//constructeurs
-		Grille(const int W, const int H, const int A_init);
+		Grille(const int W, const int H, const int A_init, float Pm, float Pd, float w, float Raa, float Rab, float Rbb, float Rbc);
 
 		//destructeur
 
@@ -38,8 +40,8 @@ class Grille {
 		int W_;
 		int H_;
 		int A_init_;
-		vector<Bacterie> population_;
-		vector<Case> cases_;
+		vector<Bacterie*> population_;
+		vector<vector<Case*>> cases_;
 };
 
 	//getter's definition
