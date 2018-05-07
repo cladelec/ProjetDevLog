@@ -28,3 +28,16 @@ float Bacterie::B() {
 float Bacterie::C() { 
 	return C_;
 }
+
+//Setters
+void Bacterie::set_A(float A) { 
+	A_=A;
+}
+
+void Bacterie::set_B(float B) { 
+	B_=B;
+}
+
+void Bacterie::set_C(float C) { 
+	C_=C;
+}

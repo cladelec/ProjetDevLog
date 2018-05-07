@@ -17,6 +17,10 @@ class Bacterie {
 		float B();
 		float C();
 		
+		//Setters
+		void set_A(float A);
+		void set_B(float B);
+		void set_C(float C);
 	protected : 
 		float Pdeath_; 
 		float Pmut_; 
