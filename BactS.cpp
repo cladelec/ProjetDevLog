@@ -1,5 +1,8 @@
 #include "BactS.h"
 
+//Definition of static attributes
+int BactS::nb_instancesS_=0;
+
 //Constructor 
 BactS::BactS(float Pm, float Pd, float w, float Rbb, float Rbc) : Bacterie() { 
 	Pdeath_ = Pm;
@@ -7,6 +10,7 @@ BactS::BactS(float Pm, float Pd, float w, float Rbb, float Rbc) : Bacterie() {
 	w_ = w;
 	Rbc_=Rbc;
 	Rbb_=Rbb;
+	++nb_instancesS_;
 } 
 
 //Methods

@@ -1,4 +1,4 @@
- #ifndef GRILLE_H_
+#ifndef GRILLE_H_
 #define GRILLE_H_
 
 #include <cstdio>
@@ -34,7 +34,7 @@ class Grille {
 
 		//public function members
 		void diffusion() ;
-
+		string to_string() const;
 	protected :
 
 		//attributs
