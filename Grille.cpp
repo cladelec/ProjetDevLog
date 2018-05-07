@@ -101,27 +101,35 @@ void Grille::diffusion(){
 }
 
 void Grille::reproduction(){
-	/*for(vector<Case*>::iterator it = gap_.begin(); it != gap_.end(); ++it){
-		vector<Case*> vois=moore(*it);
-		Bacterie best=vois.begin(); //quel est le meilleur ??
+	for(vector<Case*>::iterator it = gap_.begin(); it != gap_.end(); ++it){
+		vector<Case*> vois=moore(**it);
+		int pos_best=0; //quel est le meilleur ??
+		int pos=0;
 		for(vector<Case*>::iterator it2 = vois.begin(); it2 != vois.end(); ++it2){
-			if((*it2)->w()>best.w()){
-				best=*it2;
+			if( ((*it2)->get_bact())->w() > vois[pos_best]->get_bact()->w() ){
+				pos_best=pos;
 			}
+			++pos;
 		}
-		best.set_A(best.A()/2);
-		best.set_B(best.B()/2);	
-		best.set_C(best.C()/2);
-		if(best.typeL()) {
+		vois[pos_best]->get_bact()->set_A(vois[pos_best]->get_bact()->A()/2);
+		vois[pos_best]->get_bact()->set_B(vois[pos_best]->get_bact()->B()/2);	
+		vois[pos_best]->get_bact()->set_C(vois[pos_best]->get_bact()->C()/2);
+		if(vois[pos_best]->get_bact()->typeL()) {
 			BactL* b=new BactL(Pm_,Pd_,Raa_,Rab_);
-			(*it).set_bact(b);
+			(*it)->set_bact(b);
 			population_.push_back(b);
+			b->set_A(vois[pos_best]->get_bact()->A()/2);
+			b->set_B(vois[pos_best]->get_bact()->B()/2);
+			b->set_C(vois[pos_best]->get_bact()->C()/2);
 		} else {
 			BactS* b=new BactS(Pm_,Pd_,Rbb_,Rbc_);
-			(*it).set_bact(b);
+			(*it)->set_bact(b);
 			population_.push_back(b);
+			b->set_A(vois[pos_best]->get_bact()->A()/2);
+			b->set_B(vois[pos_best]->get_bact()->B()/2);
+			b->set_C(vois[pos_best]->get_bact()->C()/2);
 		}					
-	}*/
+	}
 }
 
 void Grille::maj_gap(){
