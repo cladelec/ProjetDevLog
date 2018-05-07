@@ -36,6 +36,8 @@ class Grille {
 		void diffusion();
 		void reproduction();
 		string to_string() const;
+		void maj_gap();
+		
 	protected :
 
 		//attributs
@@ -45,6 +47,7 @@ class Grille {
 		float D_;
 		vector<Bacterie*> population_;
 		vector<vector<Case*>> cases_;
+		vector<Case*> gap_;
 };
 
 	//getter's definition
