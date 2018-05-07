@@ -17,7 +17,7 @@
 using namespace std;
 
 //constructeur
-Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D) {
+Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc) {
 	//création tableau 2D 
 	for(int i=0; i<H_; ++i){
 		cases_.push_back(vector<Case*>(W_));
@@ -100,14 +100,28 @@ void Grille::diffusion(){
 	}	
 }
 
-/*void Grille::reproduction(){
-	for(vector<Case*>::iterator it = gap_.begin(); it != gap_.end(); ++it){
+void Grille::reproduction(){
+	/*for(vector<Case*>::iterator it = gap_.begin(); it != gap_.end(); ++it){
 		vector<Case*> vois=moore(*it);
-		Bacterie best=vois.begin();
+		Bacterie best=vois.begin(); //quel est le meilleur ??
 		for(vector<Case*>::iterator it2 = vois.begin(); it2 != vois.end(); ++it2){
-			
-		}				
-	}
+			if((*it2)->w()>best.w()){
+				best=*it2;
+			}
+		}
+		best.set_A(best.A()/2);
+		best.set_B(best.B()/2);	
+		best.set_C(best.C()/2);
+		if(best.typeL()) {
+			BactL* b=new BactL(Pm_,Pd_,Raa_,Rab_);
+			(*it).set_bact(b);
+			population_.push_back(b);
+		} else {
+			BactS* b=new BactS(Pm_,Pd_,Rbb_,Rbc_);
+			(*it).set_bact(b);
+			population_.push_back(b);
+		}					
+	}*/
 }
 
 void Grille::maj_gap(){
@@ -118,7 +132,7 @@ void Grille::maj_gap(){
 			}	
 		}
 	}
-}*/
+}
 
  //Pre-conditions : bien donner une case sans bacterie en paramètre
 vector<Case*> Grille::moore(Case c){

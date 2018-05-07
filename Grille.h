@@ -34,7 +34,7 @@ class Grille {
 
 		//public function members
 		void diffusion();
-		//void reproduction();
+		void reproduction();
 		string to_string() const;
 		void maj_gap();
 		vector<Case*> moore(Case c);
@@ -46,6 +46,12 @@ class Grille {
 		int H_;
 		int A_init_;
 		float D_;
+		float Pm_;
+		float Pd_;
+		float Raa_;
+		float Rab_;
+		float Rbb_;
+		float Rbc_;
 		vector<Bacterie*> population_;
 		vector<vector<Case*>> cases_;
 		vector<Case*> gap_;
