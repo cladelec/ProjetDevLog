@@ -8,7 +8,7 @@
 using namespace std;
 
 //CONSTRUCTEUR
-Case::Case(int x, int y, int Ainit) : x_(x), y_(y), B_(0), C_(0), A_(Ainit), bact_(nullptr) {}
+Case::Case(int x, int y, int Ainit) : x_(x), y_(y), Bout_(0), Cout_(0), Aout_(Ainit), bact_(nullptr) {}
 
 //DESTRUCTEUR
 Case::~Case()=default;
@@ -22,16 +22,16 @@ float Case::get_y() {
 	return y_;
 }
 
-float Case::get_A() {
-	return A_;
+float Case::Aout() {
+	return Aout_;
 }
 
-float Case::get_B() {
-	return B_;
+float Case::Bout() {
+	return Bout_;
 }
 
-float Case::get_C() {
-	return C_;
+float Case::Cout() {
+	return Bout_;
 }
 
 Bacterie* Case::get_bact() {
@@ -40,15 +40,15 @@ Bacterie* Case::get_bact() {
 
 //SETTERS
 void Case::set_A(float a){
-	A_=a;
+	Aout_=a;
 }
 
 void Case::set_B(float b){
-	B_=b;
+	Bout_=b;
 }
 
 void Case::set_C(float c){
-	C_=c;
+	Cout_=c;
 }
 
 void Case::set_bact(Bacterie* bact){

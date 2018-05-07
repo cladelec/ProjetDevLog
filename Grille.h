@@ -19,7 +19,7 @@ class Grille {
 	public :
 
 		//constructeurs
-		Grille(const int W, const int H, const int A_init, float Pm, float Pd, float w, float Raa, float Rab, float Rbb, float Rbc);
+		Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float w, float Raa, float Rab, float Rbb, float Rbc);
 
 		//destructeur
 		~Grille();
@@ -33,6 +33,7 @@ class Grille {
 		//setters
 
 		//public function members
+		void diffusion() ;
 
 	protected :
 
@@ -40,6 +41,7 @@ class Grille {
 		int W_;
 		int H_;
 		int A_init_;
+		float D_;
 		vector<Bacterie*> population_;
 		vector<vector<Case*>> cases_;
 };
