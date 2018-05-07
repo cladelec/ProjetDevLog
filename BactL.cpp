@@ -1,5 +1,8 @@
 #include "BactL.h"
 
+//Definition of static attributes
+int BactL::nb_instancesL_=0;
+
 //Constructor 
 BactL::BactL(float Pm, float Pd, float w, float Raa, float Rab) : Bacterie() { 
 	Pdeath_ = Pm;
@@ -7,6 +10,7 @@ BactL::BactL(float Pm, float Pd, float w, float Raa, float Rab) : Bacterie() {
 	w_ = w;
 	Rab_=Rab;
 	Raa_=Raa;
+	++nb_instancesL_;
 } 
 
 //Methods

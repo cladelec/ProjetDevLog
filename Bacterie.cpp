@@ -17,3 +17,14 @@ float Bacterie::Pmut() {
 	return Pmut_; 
 }
 
+float Bacterie::A() { 
+	return A_;
+}
+
+float Bacterie::B() { 
+	return B_;
+}
+
+float Bacterie::C() { 
+	return C_;
+}
