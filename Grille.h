@@ -1,4 +1,4 @@
-#ifndef GRILLE_H_
+ #ifndef GRILLE_H_
 #define GRILLE_H_
 
 #include <cstdio>
@@ -22,7 +22,7 @@ class Grille {
 		Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float w, float Raa, float Rab, float Rbb, float Rbc);
 
 		//destructeur
-
+		~Grille();
 		//getters
 		inline int W() const;
 		inline int H() const;
