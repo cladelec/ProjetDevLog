@@ -45,3 +45,28 @@ Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, f
 		cases_[x][y]->set_bact(*it);
 	}
 }
+
+
+//destructeur 
+Grille::~Grille() { 
+	vector<Bacterie *>::iterator it=population_.begin(); 
+	vector<Bacterie *>::iterator popto_remove;
+	while(it != population_.end()){
+		 popto_remove = it;
+		 ++it; 
+		 delete *popto_remove;
+	}
+	
+	vector<vector<Case *>>::iterator cases1D=cases_.begin();
+	vector<Case *>::iterator cases2D=cases1D->begin();
+	cout <<*cases2D << endl;
+	vector<Case *>::iterator casesto_remove;
+	while(cases1D != cases_.end()) { 
+		while(cases2D != cases1D->end()) { 
+			casesto_remove = cases2D;
+			delete *casesto_remove;
+		}
+	}
+}
+
+
