@@ -17,7 +17,7 @@
 using namespace std;
 
 //constructeur
-Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float w, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init){
+Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float w, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D) {
 	//création tableau 2D 
 	for(int i=0; i<H_; ++i){
 		cases_.push_back(vector<Case*>(W_));
@@ -51,6 +51,60 @@ Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, f
 	}
 }
 
+
+//destructeur 
+Grille::~Grille() { 
+	vector<Bacterie *>::iterator it=population_.begin(); 
+	vector<Bacterie *>::iterator popto_remove;
+	while(it != population_.end()){
+		 popto_remove = it;
+		 ++it; 
+		 delete *popto_remove;
+	}
+	
+	vector<vector<Case *>>::iterator cases1D=cases_.begin();
+	vector<Case *>::iterator cases2D=cases1D->begin();
+	cout <<*cases2D << endl;
+	vector<Case *>::iterator casesto_remove;
+	while(cases1D != cases_.end()) { 
+		while(cases2D != cases1D->end()) { 
+			casesto_remove = cases2D;
+			delete *casesto_remove;
+		}
+	}
+}
+//public function members
+void Grille::diffusion(){
+	for(int x=0; x<H_; ++x){
+		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
+			
+						
+			//Algo de diffusion des métabolites
+			int ainit=cases_[x][y]->Aout();
+			int binit=cases_[x][y]->Bout();
+			int cinit=cases_[x][y]->Cout();
+			
+			for (int i=-1;i<=1;++i){
+				for (int j=-1;j<=1;++j){
+					cases_[x][y]->set_A(cases_[x][y]->Aout()+D_*cases_[x+i][y+j]->Aout()); //maj de la concentration en A
+					cases_[x][y]->set_B(cases_[x][y]->Bout()+D_*cases_[x+i][y+j]->Bout()); //maj de la concentration en B
+					cases_[x][y]->set_C(cases_[x][y]->Cout()+D_*cases_[x+i][y+j]->Cout()); //maj de la concentration en C
+				}
+			}
+			
+			cases_[x][y]->set_A(cases_[x][y]->Aout()+D_*9*ainit);
+			cases_[x][y]->set_B(cases_[x][y]->Bout()+D_*9*binit);
+			cases_[x][y]->set_C(cases_[x][y]->Cout()+D_*9*cinit);
+			
+			
+			
+		}
+	}
+	
+		
+	
+}
+
 string Grille::to_string() const{
   char delim = '\t';
   stringstream sst;
@@ -68,3 +122,6 @@ string Grille::to_string() const{
 	}
   return sst.str();
 }
+
+
+

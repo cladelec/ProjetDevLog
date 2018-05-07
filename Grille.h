@@ -19,26 +19,29 @@ class Grille {
 	public :
 
 		//constructeurs
-		Grille(const int W, const int H, const int A_init, float Pm, float Pd, float w, float Raa, float Rab, float Rbb, float Rbc);
+		Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float w, float Raa, float Rab, float Rbb, float Rbc);
 
 		//destructeur
-
+		~Grille();
 		//getters
 		inline int W() const;
 		inline int H() const;
 		inline int A_init() const;
+		//inline vector<Bacterie> population() const;
+		//inline vector<Case> cases() const;
 
 		//setters
 
 		//public function members
-    string to_string() const;
-
+		void diffusion() ;
+		string to_string() const;
 	protected :
 
 		//attributs
 		int W_;
 		int H_;
 		int A_init_;
+		float D_;
 		vector<Bacterie*> population_;
 		vector<vector<Case*>> cases_;
 };
@@ -56,4 +59,11 @@ inline int Grille::A_init() const{
 	return A_init_;
 }
 
+/*inline vector<Bacterie> Grille::population() const{
+	return population_;
+}
+
+inline vector<Case> Grille::cases() const{
+	return cases_;
+}*/
 #endif
