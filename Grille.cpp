@@ -103,6 +103,16 @@ void Grille::diffusion(){
 void Grille::reproduction(){
 }
 
+void Grille::maj_gap(){
+	for(int x=0; x<H_; ++x){
+		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
+			if(cases_[x][y]->get_bact()==nullptr) { //si pas de bactérie
+				gap_.push_back(cases_[x][y]); //on ajoute dans le vecteur de gap
+			}	
+		}
+	}
+}
+
 string Grille::to_string() const{
   char delim = '\t';
   stringstream sst;
