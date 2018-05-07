@@ -100,7 +100,14 @@ void Grille::diffusion(){
 	}	
 }
 
-void Grille::reproduction(){
+/*void Grille::reproduction(){
+	for(vector<Case*>::iterator it = gap_.begin(); it != gap_.end(); ++it){
+		vector<Case*> vois=moore(*it);
+		Bacterie best=vois.begin();
+		for(vector<Case*>::iterator it2 = vois.begin(); it2 != vois.end(); ++it2){
+			
+		}				
+	}
 }
 
 void Grille::maj_gap(){
@@ -109,6 +116,18 @@ void Grille::maj_gap(){
 			if(cases_[x][y]->get_bact()==nullptr) { //si pas de bactérie
 				gap_.push_back(cases_[x][y]); //on ajoute dans le vecteur de gap
 			}	
+		}
+	}
+}*/
+
+ //Pre-conditions : bien donner une case sans bacterie en paramètre
+vector<Case*> Grille::moore(Case c){
+	vector<Case*> ret;
+	for (int i=-1;i<=1;++i){
+		for (int j=-1;j<=1;++j){
+			if(cases_[c.get_x()+i][c.get_y()+j]->get_bact()==nullptr){
+				ret.push_back(&c);
+			}
 		}
 	}
 }
