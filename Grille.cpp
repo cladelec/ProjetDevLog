@@ -17,7 +17,7 @@
 using namespace std;
 
 //constructeur
-Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float w, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D) {
+Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D) {
 	//création tableau 2D 
 	for(int i=0; i<H_; ++i){
 		cases_.push_back(vector<Case*>(W_));
@@ -31,8 +31,8 @@ Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, f
 	}
 	//création bactéries
 	for(int i=0; i<W_*H_/2;++i){
-		BactL* bl = new BactL(Pm,Pd,w,Raa,Rab);
-		BactS* bs = new BactS(Pm,Pd,w,Rbb,Rbc);
+		BactL* bl = new BactL(Pm,Pd,Raa,Rab);
+		BactS* bs = new BactS(Pm,Pd,Rbb,Rbc);
 	//ajout dans vecteur Bacterie
 		population_.push_back(bl);
 		population_.push_back(bs);
