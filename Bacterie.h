@@ -17,6 +17,7 @@ class Bacterie {
 		float B();
 		float C();
 		float w();
+		bool typeL();
 		
 		//Setters
 		void set_A(float A);
@@ -31,7 +32,7 @@ class Bacterie {
 		float A_;
 		float B_; 
 		float C_;
-		
+		bool typeL_; //0 si S, 1 si L
 		
 
 };
