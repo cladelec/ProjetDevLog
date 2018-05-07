@@ -34,9 +34,10 @@ class Grille {
 
 		//public function members
 		void diffusion();
-		void reproduction();
+		//void reproduction();
 		string to_string() const;
 		void maj_gap();
+		vector<Case*> moore(Case c);
 		
 	protected :
 
