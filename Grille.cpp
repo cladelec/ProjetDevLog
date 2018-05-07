@@ -140,6 +140,7 @@ void Grille::maj_gap(){
 			}	
 		}
 	}
+	random_shuffle(gap_.begin(),gap_.end());
 }
 
  //Pre-conditions : bien donner une case sans bacterie en paramètre
