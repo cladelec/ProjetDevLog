@@ -11,6 +11,7 @@ BactS::BactS(float Pm, float Pd, float Rbb, float Rbc) {
 	Rbc_=Rbc;
 	Rbb_=Rbb;
 	++nb_instancesS_;
+	typeL_=0;
 } 
 
 //Methods

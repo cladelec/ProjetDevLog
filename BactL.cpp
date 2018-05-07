@@ -11,6 +11,7 @@ BactL::BactL(float Pm, float Pd, float Raa, float Rab)  {
 	Rab_=Rab;
 	Raa_=Raa;
 	++nb_instancesL_;
+	typeL_=1;
 } 
 
 //Methods
