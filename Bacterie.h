@@ -13,6 +13,9 @@ class Bacterie {
 		//Getters 
 		float Pdeath();
 		float Pmut();
+		float A();
+		float B();
+		float C();
 		
 	protected : 
 		float Pdeath_; 
