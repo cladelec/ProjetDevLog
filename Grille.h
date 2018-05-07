@@ -19,7 +19,7 @@ class Grille {
 	public :
 
 		//constructeurs
-		Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float w, float Raa, float Rab, float Rbb, float Rbc);
+		Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc);
 
 		//destructeur
 		~Grille();

@@ -6,7 +6,7 @@
 class BactS : public Bacterie { 
 	public : 
 		//Constructor 
-		BactS(float Pm, float Pd, float w, float Rbb, float Rbc);
+		BactS(float Pm, float Pd, float Rbb, float Rbc);
 		
 		
 		

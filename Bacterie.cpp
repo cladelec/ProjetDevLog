@@ -29,6 +29,9 @@ float Bacterie::C() {
 	return C_;
 }
 
+float Bacterie::w() { 
+	return w_;
+}
 //Setters
 void Bacterie::set_A(float A) { 
 	A_=A;
