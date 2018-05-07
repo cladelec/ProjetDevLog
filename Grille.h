@@ -27,12 +27,11 @@ class Grille {
 		inline int W() const;
 		inline int H() const;
 		inline int A_init() const;
-		//inline vector<Bacterie> population() const;
-		//inline vector<Case> cases() const;
 
 		//setters
 
 		//public function members
+    string to_string() const;
 
 	protected :
 
@@ -57,11 +56,4 @@ inline int Grille::A_init() const{
 	return A_init_;
 }
 
-/*inline vector<Bacterie> Grille::population() const{
-	return population_;
-}
-
-inline vector<Case> Grille::cases() const{
-	return cases_;
-}*/
 #endif
