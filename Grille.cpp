@@ -91,15 +91,8 @@ void Grille::diffusion(){
 			cases_[x][y]->set_A(cases_[x][y]->Aout()+D_*9*ainit);
 			cases_[x][y]->set_B(cases_[x][y]->Bout()+D_*9*binit);
 			cases_[x][y]->set_C(cases_[x][y]->Cout()+D_*9*cinit);
-			
-			
-			
 		}
 	}
-	
-	
-	
-	
 }
 
 

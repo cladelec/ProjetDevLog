@@ -9,7 +9,7 @@ class BactL : public Bacterie {
 		BactL(float Pm, float Pd, float w, float Raa, float Rab);
 		
 		
-		
+	
 		//Methods 
 		void metaboliser(float * A, float * B, float * C); 
 
