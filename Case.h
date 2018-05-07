@@ -21,9 +21,8 @@ class Case {
 		//GETTERS
 		float get_x();
 		float get_y();
-		float get_A();
-		float get_B();
-		float get_C();
+		float Aout();
+		float Bout();
 		Bacterie* get_bact();
 		
 		//SETTERS
@@ -38,9 +37,8 @@ class Case {
 	protected :
 		float x_;
 		float y_;	
-		float A_;
-		float B_;
-		float C_;
+		float Aout_;
+		float Bout_;
 		Bacterie* bact_;
 		
 	
