@@ -74,11 +74,12 @@ void Grille::diffusion(){
 			
 		}
 	}
-	
+}
+
+void Grille::reproduction(){
 	
 	
 	
 }
-
 
 

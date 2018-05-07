@@ -33,7 +33,8 @@ class Grille {
 		//setters
 
 		//public function members
-		void diffusion() ;
+		void diffusion();
+		void reproduction();
 
 	protected :
 
