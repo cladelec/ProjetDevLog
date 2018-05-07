@@ -16,6 +16,7 @@ class Bacterie {
 		float A();
 		float B();
 		float C();
+		float w();
 		
 		//Setters
 		void set_A(float A);
@@ -30,6 +31,8 @@ class Bacterie {
 		float A_;
 		float B_; 
 		float C_;
+		
+		
 
 };
 #endif 
