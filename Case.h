@@ -23,6 +23,7 @@ class Case {
 		float get_y();
 		float Aout();
 		float Bout();
+		float Cout();
 		Bacterie* get_bact();
 		
 		//SETTERS
@@ -39,6 +40,7 @@ class Case {
 		float y_;	
 		float Aout_;
 		float Bout_;
+		float Cout_;
 		Bacterie* bact_;
 		
 	
