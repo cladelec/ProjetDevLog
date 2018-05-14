@@ -194,7 +194,7 @@ string Grille::to_string() const{
   sst << "Nombre de Bactérie L" << delim << BactL::nb_instancesL() << "\n";
 
 	if(BactS::nb_instancesS()==0 && BactL::nb_instancesL()==0){
-		sst << "L'intégralité de la population est éteinte..."  << "\n";
+		sst << "L'intégralité de la population est éteinte...Dommage"  << "\n";
 	}
 	else if(BactS::nb_instancesS()>0 && BactL::nb_instancesL()>0){
 		sst << "Les lignées de bactéries S et de bactéries L cohabitent."  << "\n";
