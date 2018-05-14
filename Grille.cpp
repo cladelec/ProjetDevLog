@@ -151,11 +151,26 @@ vector<Case*> Grille::moore(Case c){
 	vector<Case*> ret;
 	for (int i=-1;i<=1;++i){
 		for (int j=-1;j<=1;++j){
+			int x=c.get_x()+i;
+			int y=c.get_y()+j;
 			if(cases_[c.get_x()+i][c.get_y()+j]->get_bact()==nullptr){
-				ret.push_back(&c);
+				if(c.get_x()+i>H_) { 
+					x=0;
+				} 
+				if(c.get_x()+i<H_) { 
+					x=H_-1;
+				} 
+				if(c.get_y()+j>W_) {
+					y=0;
+				} 
+				if(c.get_y()+j<W_) { 
+					y=W_-1;
+				}
 			}
+		ret.push_back(cases_[x][y]);
 		}
 	}
+	return ret;
 }
 
 string Grille::to_string() const{
