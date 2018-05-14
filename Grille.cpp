@@ -17,14 +17,14 @@
 using namespace std;
 
 //constructeur
-Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc) {
+Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc), gap_(vector <Case*>()) {
 	//création tableau 2D 
 	for(int i=0; i<H_; ++i){
-		cases_.push_back(vector<Case*>(W_));
+		cases_.push_back(vector<Case*>());
 	}
 	//ajout cases dans tableau
 	for(int i=0; i<H_; ++i){
-		for(int j=0; j<W_;++i){
+		for(int j=0; j<W_;++j){
 			Case* c = new Case(j,i,A_init_);
 			cases_[i].push_back(c);
 		}
@@ -41,10 +41,10 @@ Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, f
 	random_shuffle ( population_.begin(), population_.end() );
 	//distribue Bacterie dans une case
 	for(vector<Bacterie*>::iterator it = population_.begin(); it != population_.end(); ++it){
-		float x; float y;
+		int x; int y;
 		do { 
-		x=(rand()%W_+1);
-		y=(rand()%H_+1);
+		y=(rand()%W_);
+		x=(rand()%H_);
 	//si case déjà occupée recommencer
 		} while (cases_[x][y]->get_bact() != nullptr);
 		cases_[x][y]->set_bact(*it);
@@ -64,13 +64,16 @@ Grille::~Grille() {
 	
 	vector<vector<Case *>>::iterator cases1D=cases_.begin();
 	vector<Case *>::iterator cases2D=cases1D->begin();
-	cout <<*cases2D << endl;
+	//cout <<*cases2D << endl;
 	vector<Case *>::iterator casesto_remove;
 	while(cases1D != cases_.end()) { 
+		vector<Case *>::iterator cases2D=cases1D->begin();
 		while(cases2D != cases1D->end()) { 
 			casesto_remove = cases2D;
+			++cases2D;
 			delete *casesto_remove;
 		}
+		++cases1D;
 	}
 }
 

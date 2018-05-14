@@ -8,7 +8,8 @@ class BactL : public Bacterie {
 		//Constructor 
 		BactL(float Pm, float Pd, float Raa, float Rab);
 		
-		
+		//Destructor 
+		~BactL();
 	
 		//Methods 
 		void metaboliser(float * A, float * B, float * C); 

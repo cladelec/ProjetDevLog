@@ -14,6 +14,11 @@ BactS::BactS(float Pm, float Pd, float Rbb, float Rbc) {
 	typeL_=0;
 } 
 
+//Destructor 
+BactS::~BactS() { 
+	nb_instancesS_--;
+}
+
 //Methods
 void BactS::metaboliser(float * A, float * B, float * C) { 
 	*B=*B-(*B)*Rbb_; 

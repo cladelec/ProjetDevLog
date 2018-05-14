@@ -14,6 +14,11 @@ BactL::BactL(float Pm, float Pd, float Raa, float Rab)  {
 	typeL_=1;
 } 
 
+//Destructor 
+BactL::~BactL() { 
+	nb_instancesL_--;
+}
+
 //Methods
 void BactL::metaboliser(float * A, float * B, float * C) { 
 	*A=*A-(*A)*Raa_; 
