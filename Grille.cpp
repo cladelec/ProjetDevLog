@@ -166,8 +166,8 @@ vector<Case*> Grille::moore(Case c){
 				if(c.get_y()+j<W_) { 
 					y=W_-1;
 				}
+				ret.push_back(cases_[x][y]);
 			}
-		ret.push_back(cases_[x][y]);
 		}
 	}
 	return ret;
