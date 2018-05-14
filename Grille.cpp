@@ -17,7 +17,7 @@
 using namespace std;
 
 //constructeur
-Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc), gap_(vector <Case*>()) {
+Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc), gap_(vector <Case*>()) {
 	//création tableau 2D 
 	for(int i=0; i<H_; ++i){
 		cases_.push_back(vector<Case*>());
@@ -81,25 +81,24 @@ Grille::~Grille() {
 void Grille::diffusion(){
 	for(int x=0; x<H_; ++x){
 		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
-			
-						
+									
 			//Algo de diffusion des métabolites
-			int ainit=cases_[x][y]->Aout();
-			int binit=cases_[x][y]->Bout();
-			int cinit=cases_[x][y]->Cout();
+			float ainit=cases_[x][y]->Aout();
+			float binit=cases_[x][y]->Bout();
+			float cinit=cases_[x][y]->Cout();
 			
 			//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
 			for (int i=-1;i<=1;++i){
 				int indx=x+i;
 				for (int j=-1;j<=1;++j){
 					int indy=y+j;
-					if(indy>W_) { 
+					if(indy>=W_) { 
 						indy=0;
 					}	
 					if(indy<0) { 
 						indy=W_-1;
 					}
-					if(indx>H_) { 
+					if(indx>=H_) { 
 						indx=0;
 					}
 					if(indx<0) { 
@@ -170,13 +169,13 @@ vector<Case*> Grille::moore(Case c){
 			int x=c.get_x()+i;
 			int y=c.get_y()+j;
 			if(cases_[c.get_x()+i][c.get_y()+j]->get_bact()==nullptr){
-				if(c.get_x()+i>H_) { 
+				if(c.get_x()+i>=H_) { 
 					x=0;
 				} 
 				if(c.get_x()+i<0) { 
 					x=H_-1;
 				} 
-				if(c.get_y()+j>W_) {
+				if(c.get_y()+j>=W_) {
 					y=0;
 				} 
 				if(c.get_y()+j<0) { 
