@@ -90,10 +90,24 @@ void Grille::diffusion(){
 			
 			//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
 			for (int i=-1;i<=1;++i){
+				int indx=x+i;
 				for (int j=-1;j<=1;++j){
-					cases_[x][y]->set_A(cases_[x][y]->Aout()+D_*cases_[x+i][y+j]->Aout()); //maj de la concentration en A
-					cases_[x][y]->set_B(cases_[x][y]->Bout()+D_*cases_[x+i][y+j]->Bout()); //maj de la concentration en B
-					cases_[x][y]->set_C(cases_[x][y]->Cout()+D_*cases_[x+i][y+j]->Cout()); //maj de la concentration en C
+					int indy=y+j;
+					if(indy>W_) { 
+						indy=0;
+					}	
+					if(indy<0) { 
+						indy=W_-1;
+					}
+					if(indx>H_) { 
+						indx=0;
+					}
+					if(indx<0) { 
+						indx=H_-1;
+					}
+					cases_[x][y]->set_A(cases_[x][y]->Aout()+D_*cases_[indx][indy]->Aout()); //maj de la concentration en A
+					cases_[x][y]->set_B(cases_[x][y]->Bout()+D_*cases_[indx][indy]->Bout()); //maj de la concentration en B
+					cases_[x][y]->set_C(cases_[x][y]->Cout()+D_*cases_[indx][indy]->Cout()); //maj de la concentration en C
 				}
 			}
 			
@@ -153,11 +167,26 @@ vector<Case*> Grille::moore(Case c){
 	vector<Case*> ret;
 	for (int i=-1;i<=1;++i){
 		for (int j=-1;j<=1;++j){
+			int x=c.get_x()+i;
+			int y=c.get_y()+j;
 			if(cases_[c.get_x()+i][c.get_y()+j]->get_bact()==nullptr){
-				ret.push_back(&c);
+				if(c.get_x()+i>H_) { 
+					x=0;
+				} 
+				if(c.get_x()+i<0) { 
+					x=H_-1;
+				} 
+				if(c.get_y()+j>W_) {
+					y=0;
+				} 
+				if(c.get_y()+j<0) { 
+					y=W_-1;
+				}
+				ret.push_back(cases_[x][y]);
 			}
 		}
 	}
+	return ret;
 }
 
 void Grille::run() {
