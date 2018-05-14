@@ -6,6 +6,9 @@
 
 int main () {
 	printf("Hello world \n");
-	Grille laGrille(1,2,2,2.5,0.5,0.69,0.2568,0.3369,0.1456,0.1235);
+	
+	Grille laGrille(32,32,20,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	cout<<laGrille.to_string()<<endl;
+	
 	return 0;
 }
