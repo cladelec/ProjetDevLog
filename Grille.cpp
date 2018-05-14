@@ -89,9 +89,9 @@ void Grille::diffusion(){
 			int cinit=cases_[x][y]->Cout();
 			
 			for (int i=-1;i<=1;++i){
-				indx=x+i;
+				int indx=x+i;
 				for (int j=-1;j<=1;++j){
-					indy=y+j;
+					int indy=y+j;
 					if(indy>W_) { 
 						indy=0;
 					}	
