@@ -2,6 +2,7 @@
 #define BACTL_H_
 
 #include "Bacterie.h"
+#include "Case.h"
 
 class BactL : public Bacterie { 
 	public : 
@@ -12,7 +13,7 @@ class BactL : public Bacterie {
 		~BactL();
 	
 		//Methods 
-		void metaboliser(float * A, float * B, float * C); 
+		void metaboliser(Case* c); 
 
 		//Getters
 		inline static int nb_instancesL();

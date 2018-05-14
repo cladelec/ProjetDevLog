@@ -88,6 +88,7 @@ void Grille::diffusion(){
 			int binit=cases_[x][y]->Bout();
 			int cinit=cases_[x][y]->Cout();
 			
+			//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
 			for (int i=-1;i<=1;++i){
 				int indx=x+i;
 				for (int j=-1;j<=1;++j){
@@ -160,6 +161,7 @@ void Grille::maj_gap(){
 	random_shuffle(gap_.begin(),gap_.end());
 }
 
+//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
  //Pre-conditions : bien donner une case sans bacterie en paramètre
 vector<Case*> Grille::moore(Case c){
 	vector<Case*> ret;
@@ -185,6 +187,23 @@ vector<Case*> Grille::moore(Case c){
 		}
 	}
 	return ret;
+}
+
+void Grille::run() {
+	diffusion();
+	//mort des bacteries
+	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
+		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
+			(*it2)->mort_bact();
+		}
+	}
+	reproduction();
+	//métaboliser	
+	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
+		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
+			(*it2)->get_bact()->metaboliser(*it2);
+		}
+	}
 }
 
 string Grille::to_string() const{
