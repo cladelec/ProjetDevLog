@@ -1,6 +1,7 @@
 #ifndef BACTERIE_H_
 #define BACTERIE_H_
 
+class Case;
 
 class Bacterie { 
 	public : 
@@ -9,7 +10,7 @@ class Bacterie {
 	
 
 		//Methods
-		virtual void metaboliser(float * A, float * B, float * C)=0;
+		virtual void metaboliser(Case* c)=0;
 		//Getters 
 		float Pdeath();
 		float Pmut();

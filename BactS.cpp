@@ -1,4 +1,5 @@
 #include "BactS.h"
+#include "Case.h"
 
 //Definition of static attributes
 int BactS::nb_instancesS_=0;
@@ -20,9 +21,10 @@ BactS::~BactS() {
 }
 
 //Methods
-void BactS::metaboliser(float * A, float * B, float * C) { 
-	*B=*B-(*B)*Rbb_; 
-	B_=B_+(*B)*Rbb_-B_*Rbc_;
+void BactS::metaboliser(Case* c) { 
+	c->set_B(c->Bout()-c->Bout()*Rbb_);
+	//*B=*B-(*B)*Rbb_; 
+	B_=B_+c->Bout()*Rbb_-B_*Rbc_;
 	C_=C_+B_*Rbc_;
 	
 	//modif de la fitness 
