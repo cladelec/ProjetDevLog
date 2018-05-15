@@ -17,7 +17,7 @@
 using namespace std;
 
 //constructeur
-Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc), gap_(vector <Case*>()) {
+Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc), gap_(vector <Case*>()) {
 	//création tableau 2D 
 	for(int i=0; i<H_; ++i){
 		cases_.push_back(vector<Case*>());
@@ -81,12 +81,11 @@ Grille::~Grille() {
 void Grille::diffusion(){
 	for(int x=0; x<H_; ++x){
 		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
-			
-						
+									
 			//Algo de diffusion des métabolites
-			int ainit=cases_[x][y]->Aout();
-			int binit=cases_[x][y]->Bout();
-			int cinit=cases_[x][y]->Cout();
+			float ainit=cases_[x][y]->Aout();
+			float binit=cases_[x][y]->Bout();
+			float cinit=cases_[x][y]->Cout();
 			
 			//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
 			for (int i=-1;i<=1;++i){
@@ -207,7 +206,7 @@ void Grille::run() {
 }
 
 string Grille::to_string() const{
-  char delim = '\t';
+	char delim = '\t';
   stringstream sst;
   sst << "Nombre de Bactérie S"  << delim << BactS::nb_instancesS() << "\n";
   sst << "Nombre de Bactérie L" << delim << BactL::nb_instancesL() << "\n";
@@ -224,3 +223,28 @@ string Grille::to_string() const{
   return sst.str();
 }
 
+string Grille::affichage(){
+  stringstream sst;
+	for(int i=0; i<H_; ++i){
+			sst << "----";
+		for(int k=0; k<W_-1; ++k){
+			sst << "----";
+		}
+		sst << "-" << "\n";
+		for(int j=0; j<W_;++j){
+			if(cases_[i][j]->get_bact() == nullptr){
+				sst << "|   ";
+			}else if(cases_[i][j]->get_bact()->typeL()){
+				sst << "| L ";
+			}else{
+				sst << "| S ";
+			}
+		}
+		sst << "|" << "\n";
+	}
+	for(int k=0; k<W_; ++k){
+		sst << "----";
+	}
+	sst << "-" << "\n";
+	return sst.str();
+}

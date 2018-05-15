@@ -8,7 +8,7 @@
 using namespace std;
 
 //CONSTRUCTEUR
-Case::Case(int x, int y, int Ainit) : x_(x), y_(y), Bout_(0), Cout_(0), Aout_(Ainit), bact_(nullptr) {}
+Case::Case(int x, int y, float Ainit) : x_(x), y_(y), Bout_(0.0), Cout_(0.0), Aout_(Ainit), bact_(nullptr) {}
 
 //DESTRUCTEUR
 Case::~Case()=default;
