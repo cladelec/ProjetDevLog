@@ -205,44 +205,46 @@ void Grille::run() {
 	}
 }
 
+//Renvoie le le nombre de bactéries S et L et l'état de la population
 string Grille::to_string() const{
 	char delim = '\t';
   stringstream sst;
-  sst << "Nombre de Bactérie S"  << delim << BactS::nb_instancesS() << "\n";
-  sst << "Nombre de Bactérie L" << delim << BactL::nb_instancesL() << "\n";
+  sst << "Nombre de Bactérie S"  << delim << BactS::nb_instancesS() << "\n"; //nb d'instances S
+  sst << "Nombre de Bactérie L" << delim << BactL::nb_instancesL() << "\n"; //nb d'instances L
 
-	if(BactS::nb_instancesS()==0 && BactL::nb_instancesL()==0){
+	if(BactS::nb_instancesS()==0 && BactL::nb_instancesL()==0){ //extinction
 		sst << "L'intégralité de la population est éteinte...Dommage"  << "\n";
 	}
-	else if(BactS::nb_instancesS()>0 && BactL::nb_instancesL()>0){
+	else if(BactS::nb_instancesS()>0 && BactL::nb_instancesL()>0){ //cohabitation
 		sst << "Les lignées de bactéries S et de bactéries L cohabitent."  << "\n";
 	}
-		else if(BactS::nb_instancesS()==0){
+		else if(BactS::nb_instancesS()==0){ //exclusion
 		sst << "La lignée S s'est éteinte."  << "\n";
 	}
   return sst.str();
 }
 
+//Renvoie la grille de manière graphique sur le terminal
 string Grille::affichage(){
   stringstream sst;
-	for(int i=0; i<H_; ++i){
+	for(int i=0; i<H_; ++i){ //séparation entre lignes
 			sst << "----";
-		for(int k=0; k<W_-1; ++k){
+		for(int k=0; k<W_-1; ++k){ //1ere ligne
 			sst << "----";
 		}
 		sst << "-" << "\n";
-		for(int j=0; j<W_;++j){
+		for(int j=0; j<W_;++j){ //pour chaque colonne quel type de bactéries est dans la case
 			if(cases_[i][j]->get_bact() == nullptr){
-				sst << "|   ";
+				sst << "|   "; //absence de bactérie
 			}else if(cases_[i][j]->get_bact()->typeL()){
-				sst << "| L ";
+				sst << "| L "; //présence bactérie L
 			}else{
-				sst << "| S ";
+				sst << "| S "; //présence bactérie S
 			}
 		}
 		sst << "|" << "\n";
 	}
-	for(int k=0; k<W_; ++k){
+	for(int k=0; k<W_; ++k){ //dernière ligne
 		sst << "----";
 	}
 	sst << "-" << "\n";
