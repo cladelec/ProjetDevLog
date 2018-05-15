@@ -38,7 +38,7 @@ class Grille {
 		string to_string() const;
 		void maj_gap();
 		vector<Case*> moore(Case c);
-		
+		string affichage();
 	protected :
 
 		//attributs

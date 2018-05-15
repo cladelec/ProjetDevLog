@@ -159,7 +159,7 @@ vector<Case*> Grille::moore(Case c){
 }
 
 string Grille::to_string() const{
-  char delim = '\t';
+	char delim = '\t';
   stringstream sst;
   sst << "Nombre de Bactérie S"  << delim << BactS::nb_instancesS() << "\n";
   sst << "Nombre de Bactérie L" << delim << BactL::nb_instancesL() << "\n";
@@ -176,3 +176,28 @@ string Grille::to_string() const{
   return sst.str();
 }
 
+string Grille::affichage(){
+  stringstream sst;
+	for(int i=0; i<H_; ++i){
+			sst << "----";
+		for(int k=0; k<W_-1; ++k){
+			sst << "----";
+		}
+		sst << "-" << "\n";
+		for(int j=0; j<W_;++j){
+			if(cases_[i][j]->get_bact() == nullptr){
+				sst << "|   ";
+			}else if(cases_[i][j]->get_bact()->typeL()){
+				sst << "| L ";
+			}else{
+				sst << "| S ";
+			}
+		}
+		sst << "|" << "\n";
+	}
+	for(int k=0; k<W_; ++k){
+		sst << "----";
+	}
+	sst << "-" << "\n";
+	return sst.str();
+}
