@@ -68,4 +68,4 @@ void Case::mort_bact() {
 		
 	}	
 }
-	
+

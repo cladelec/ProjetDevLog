@@ -93,13 +93,13 @@ void Grille::diffusion(){
 				int indx=x+i;
 				for (int j=-1;j<=1;++j){
 					int indy=y+j;
-					if(indy>W_) { 
+					if(indy>=W_) { 
 						indy=0;
 					}	
 					if(indy<0) { 
 						indy=W_-1;
 					}
-					if(indx>H_) { 
+					if(indx>=H_) { 
 						indx=0;
 					}
 					if(indx<0) { 
@@ -170,13 +170,13 @@ vector<Case*> Grille::moore(Case c){
 			int x=c.get_x()+i;
 			int y=c.get_y()+j;
 			if(cases_[c.get_x()+i][c.get_y()+j]->get_bact()==nullptr){
-				if(c.get_x()+i>H_) { 
+				if(c.get_x()+i>=H_) { 
 					x=0;
 				} 
 				if(c.get_x()+i<0) { 
 					x=H_-1;
 				} 
-				if(c.get_y()+j>W_) {
+				if(c.get_y()+j>=W_) {
 					y=0;
 				} 
 				if(c.get_y()+j<0) { 
