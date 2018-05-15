@@ -19,7 +19,7 @@ class Grille {
 	public :
 
 		//constructeurs
-		Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc);
+		Grille(const int W, const int H, const float A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc);
 
 		//destructeur
 		~Grille();
@@ -38,13 +38,15 @@ class Grille {
 		string to_string() const;
 		void maj_gap();
 		vector<Case*> moore(Case c);
+		void run();
 		string affichage();
+
 	protected :
 
 		//attributs
 		int W_;
 		int H_;
-		int A_init_;
+		float A_init_;
 		float D_;
 		float Pm_;
 		float Pd_;

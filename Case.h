@@ -13,7 +13,7 @@ class Case {
 	
 	public : 
 		//CONSTRUCTEUR
-		Case(int x, int y, int Ainit);
+		Case(int x, int y, float Ainit);
 		
 		//DESTRUCTEUR
 		~Case();

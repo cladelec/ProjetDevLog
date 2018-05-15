@@ -17,7 +17,7 @@
 using namespace std;
 
 //constructeur
-Grille::Grille(const int W, const int H, const int A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc), gap_(vector <Case*>()) {
+Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc), gap_(vector <Case*>()) {
 	//création tableau 2D 
 	for(int i=0; i<H_; ++i){
 		cases_.push_back(vector<Case*>());
@@ -81,18 +81,32 @@ Grille::~Grille() {
 void Grille::diffusion(){
 	for(int x=0; x<H_; ++x){
 		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
-			
-						
+									
 			//Algo de diffusion des métabolites
-			int ainit=cases_[x][y]->Aout();
-			int binit=cases_[x][y]->Bout();
-			int cinit=cases_[x][y]->Cout();
+			float ainit=cases_[x][y]->Aout();
+			float binit=cases_[x][y]->Bout();
+			float cinit=cases_[x][y]->Cout();
 			
+			//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
 			for (int i=-1;i<=1;++i){
+				int indx=x+i;
 				for (int j=-1;j<=1;++j){
-					cases_[x][y]->set_A(cases_[x][y]->Aout()+D_*cases_[x+i][y+j]->Aout()); //maj de la concentration en A
-					cases_[x][y]->set_B(cases_[x][y]->Bout()+D_*cases_[x+i][y+j]->Bout()); //maj de la concentration en B
-					cases_[x][y]->set_C(cases_[x][y]->Cout()+D_*cases_[x+i][y+j]->Cout()); //maj de la concentration en C
+					int indy=y+j;
+					if(indy>=W_) { 
+						indy=0;
+					}	
+					if(indy<0) { 
+						indy=W_-1;
+					}
+					if(indx>=H_) { 
+						indx=0;
+					}
+					if(indx<0) { 
+						indx=H_-1;
+					}
+					cases_[x][y]->set_A(cases_[x][y]->Aout()+D_*cases_[indx][indy]->Aout()); //maj de la concentration en A
+					cases_[x][y]->set_B(cases_[x][y]->Bout()+D_*cases_[indx][indy]->Bout()); //maj de la concentration en B
+					cases_[x][y]->set_C(cases_[x][y]->Cout()+D_*cases_[indx][indy]->Cout()); //maj de la concentration en C
 				}
 			}
 			
@@ -146,14 +160,47 @@ void Grille::maj_gap(){
 	random_shuffle(gap_.begin(),gap_.end());
 }
 
+//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
  //Pre-conditions : bien donner une case sans bacterie en paramètre
 vector<Case*> Grille::moore(Case c){
 	vector<Case*> ret;
 	for (int i=-1;i<=1;++i){
 		for (int j=-1;j<=1;++j){
+			int x=c.get_x()+i;
+			int y=c.get_y()+j;
 			if(cases_[c.get_x()+i][c.get_y()+j]->get_bact()==nullptr){
-				ret.push_back(&c);
+				if(c.get_x()+i>=H_) { 
+					x=0;
+				} 
+				if(c.get_x()+i<0) { 
+					x=H_-1;
+				} 
+				if(c.get_y()+j>=W_) {
+					y=0;
+				} 
+				if(c.get_y()+j<0) { 
+					y=W_-1;
+				}
+				ret.push_back(cases_[x][y]);
 			}
+		}
+	}
+	return ret;
+}
+
+void Grille::run() {
+	diffusion();
+	//mort des bacteries
+	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
+		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
+			(*it2)->mort_bact();
+		}
+	}
+	reproduction();
+	//métaboliser	
+	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
+		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
+			(*it2)->get_bact()->metaboliser(*it2);
 		}
 	}
 }
