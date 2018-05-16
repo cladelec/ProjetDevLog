@@ -1,3 +1,6 @@
+// ===========================================================================
+//                                  Includes
+// ===========================================================================
 #include "Grille.h"
 
 #include <cstdio>
@@ -16,7 +19,9 @@
 
 using namespace std;
 
-//constructeur
+// ===========================================================================
+//                                Constructors
+// ===========================================================================
 Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc), gap_(vector <Case*>()) {
 	//création tableau 2D 
 	for(int i=0; i<H_; ++i){
@@ -52,7 +57,9 @@ Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd,
 }
 
 
-//destructeur 
+// ===========================================================================
+//                                 Destructor
+// ===========================================================================
 Grille::~Grille() { 
 	vector<Bacterie *>::iterator it=population_.begin(); 
 	vector<Bacterie *>::iterator popto_remove;
@@ -77,7 +84,9 @@ Grille::~Grille() {
 	}
 }
 
-//public function members
+// ===========================================================================
+//                           Public Function members
+// ===========================================================================
 void Grille::diffusion(){
 	for(int x=0; x<H_; ++x){
 		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
@@ -160,7 +169,6 @@ void Grille::maj_gap(){
 	random_shuffle(gap_.begin(),gap_.end());
 }
 
-//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
  //Pre-conditions : bien donner une case sans bacterie en paramètre
 vector<Case*> Grille::moore(Case c){
 	vector<Case*> ret;
