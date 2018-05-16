@@ -38,7 +38,7 @@ Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd,
 		}
 	}
 	//création bactéries
-	for(int i=0; i<W_*H_/2;++i){
+	for(int i=0; i<W_*H_/2;++i){ // prend la partie entière si W_*H_/2 n'est pas un int
 		BactL* bl = new BactL(Pm,Pd,Raa,Rab);
 		BactS* bs = new BactS(Pm,Pd,Rbb,Rbc);
 	//ajout dans vecteur Bacterie
@@ -180,6 +180,7 @@ vector<Case*> Grille::moore(Case c){
 			int x=c.get_x()+i;
 			int y=c.get_y()+j;
 			if(cases_[c.get_x()+i][c.get_y()+j]->get_bact()==nullptr){
+				//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
 				if(c.get_x()+i>=H_) { 
 					x=0;
 				} 
