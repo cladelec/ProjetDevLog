@@ -19,14 +19,14 @@ int main () {
 	
 	laGrille->run();
 	cout<<laGrille->to_string()<<endl;
-
+	cout<<laGrille->affichage()<<endl;
 
 	delete laGrille;
 
 
-	Grille laPititeGrille(4,4,2,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
-	cout<<laPititeGrille.to_string()<<endl;
-	cout<<laPititeGrille.affichage()<<endl;
+	Grille* laPititeGrille = new Grille(4,4,2,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	cout<<laPititeGrille->to_string()<<endl;
+	cout<<laPititeGrille->affichage()<<endl;
 
 	return 0;
 }
