@@ -164,9 +164,10 @@ void Grille::reproduction(){
 }
 
 void Grille::maj_gap(){
+	gap_.erase(gap_.begin(),gap_.end());
 	for(int x=0; x<H_; ++x){
 		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
-			if(cases_[x][y]->get_bact()==nullptr) { //si pas de bactérie
+			if(cases_[x][y]->get_bact()==nullptr){ //si pas de bactérie
 				gap_.push_back(cases_[x][y]); //on ajoute dans le vecteur de gap
 			}	
 		}
@@ -219,7 +220,10 @@ void Grille::run() {
 			(*it2)->mort_bact(population_);
 		}
 	}
+	//cout<<affichage()<<endl;
 	reproduction();
+	//cout<<affichage()<<endl;
+	
 	//métaboliser	
 	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
 		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
