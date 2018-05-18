@@ -13,8 +13,8 @@ int BactL::nb_instancesL_=0;
 //                                Constructors
 // =========================================================================== 
 BactL::BactL(float Pm, float Pd, float Raa, float Rab)  { 
-	Pdeath_ = Pm;
-	Pmut_ = Pd; 
+	Pdeath_ = Pd;
+	Pmut_ = Pm; 
 	w_ = 0;
 	Rab_=Rab;
 	Raa_=Raa;
@@ -33,10 +33,9 @@ BactL::~BactL() {
 //                           Public Function members
 // ===========================================================================
 void BactL::metaboliser(Case* c) { 
-	/**A=*A-(*A)*Raa_; 
-	A_=A_+(*A)*Raa_-A_*Rab_;
-	B_=B_+A_*Rab_;*/
-	c->set_A(c->Aout()-c->Aout()*Raa_);
+	/* *A=*A-(*A)*Raa_; 
+	A_=A_+(*A)*Raa_-A_*Rab_;*/
+	c->set_A((c->Aout())-(c->Aout()*Raa_));
 	A_=A_+c->Aout()*Raa_-A_*Rab_;
 	B_=B_+A_*Rab_;
 	

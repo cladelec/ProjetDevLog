@@ -13,7 +13,7 @@
 int main () {
 	printf("Hello world \n");
 	
-	Grille* laGrille = new Grille(32,32,20.0,0.0,1,0.1,0.1,0.1,0.1,0.1);
+	Grille* laGrille = new Grille(32,32,20.0,0.0,1.0,0.1,0.1,0.1,0.1,0.1);
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
 	
@@ -28,5 +28,7 @@ int main () {
 	cout<<laPititeGrille->to_string()<<endl;
 	cout<<laPititeGrille->affichage()<<endl;
 
+	
+	
 	return 0;
 }

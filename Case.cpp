@@ -71,14 +71,17 @@ void Case::set_bact(Bacterie* bact){
 // ===========================================================================
 void Case::mort_bact() {
 	float proba=(rand()%100+1); //donne une proba entre 1 et 100
-	if (proba<(bact_->Pdeath())*100) {
-		//on maj la concentration en métabolites dans la case
-		Aout_=Aout_+bact_->A();
-		Bout_=Bout_+bact_->B();
-		Cout_=Cout_+bact_->C();
-		bact_=nullptr;
-		delete bact_;
-		
+	//cout<<proba<<endl;
+	//cout<<(bact_->Pdeath())*100<<endl;
+	if(bact_!=nullptr) {
+		if (proba<(bact_->Pdeath())*100) {
+			//on maj la concentration en métabolites dans la case
+			Aout_=Aout_+bact_->A();
+			Bout_=Bout_+bact_->B();
+			Cout_=Cout_+bact_->C();
+			bact_=nullptr;
+			delete bact_;
+		}
 	}	
 }
 

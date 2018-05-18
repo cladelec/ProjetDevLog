@@ -13,8 +13,8 @@ int BactS::nb_instancesS_=0;
 //                                Constructors
 // =========================================================================== 
 BactS::BactS(float Pm, float Pd, float Rbb, float Rbc) { 
-	Pdeath_ = Pm;
-	Pmut_ = Pd; 
+	Pdeath_ = Pd;
+	Pmut_ = Pm; 
 	w_ = 0;
 	Rbc_=Rbc;
 	Rbb_=Rbb;
@@ -33,7 +33,7 @@ BactS::~BactS() {
 //                           Public Function members
 // ===========================================================================
 void BactS::metaboliser(Case* c) { 
-	c->set_B(c->Bout()-c->Bout()*Rbb_);
+	c->set_B((c->Bout())-(c->Bout()*Rbb_));
 	//*B=*B-(*B)*Rbb_; 
 	B_=B_+c->Bout()*Rbb_-B_*Rbc_;
 	C_=C_+B_*Rbc_;
