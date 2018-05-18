@@ -1,3 +1,6 @@
+// ===========================================================================
+//                                  Includes
+// ===========================================================================
 #include "Grille.h"
 
 #include <cstdio>
@@ -14,9 +17,14 @@
 #include <sstream>
 #include <string>
 
+// ===========================================================================
+//                             "using" statements
+// ===========================================================================
 using namespace std;
 
-//constructeur
+// ===========================================================================
+//                                Constructors
+// ===========================================================================
 Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd, float D, float Raa, float Rab, float Rbb, float Rbc) :  W_(W), H_(H), A_init_(A_init), D_(D), Pm_(Pm), Pd_(Pd), Raa_(Raa), Rab_(Rab), Rbb_(Rbb), Rbc_(Rbc), gap_(vector <Case*>()) {
 	//création tableau 2D 
 	for(int i=0; i<H_; ++i){
@@ -30,7 +38,7 @@ Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd,
 		}
 	}
 	//création bactéries
-	for(int i=0; i<W_*H_/2;++i){
+	for(int i=0; i<W_*H_/2;++i){ // prend la partie entière si W_*H_/2 n'est pas un int
 		BactL* bl = new BactL(Pm,Pd,Raa,Rab);
 		BactS* bs = new BactS(Pm,Pd,Rbb,Rbc);
 	//ajout dans vecteur Bacterie
@@ -52,7 +60,9 @@ Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd,
 }
 
 
-//destructeur 
+// ===========================================================================
+//                                 Destructor
+// ===========================================================================
 Grille::~Grille() { 
 	vector<Bacterie *>::iterator it=population_.begin(); 
 	vector<Bacterie *>::iterator popto_remove;
@@ -77,7 +87,9 @@ Grille::~Grille() {
 	}
 }
 
-//public function members
+// ===========================================================================
+//                           Public Function members
+// ===========================================================================
 void Grille::diffusion(){
 	for(int x=0; x<H_; ++x){
 		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
@@ -160,7 +172,6 @@ void Grille::maj_gap(){
 	random_shuffle(gap_.begin(),gap_.end());
 }
 
-//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
  //Pre-conditions : bien donner une case sans bacterie en paramètre
 vector<Case*> Grille::moore(Case c){
 	vector<Case*> ret;
@@ -169,6 +180,7 @@ vector<Case*> Grille::moore(Case c){
 			int x=c.get_x()+i;
 			int y=c.get_y()+j;
 			if(cases_[c.get_x()+i][c.get_y()+j]->get_bact()==nullptr){
+				//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
 				if(c.get_x()+i>=H_) { 
 					x=0;
 				} 
@@ -205,44 +217,46 @@ void Grille::run() {
 	}
 }
 
+//Renvoie le le nombre de bactéries S et L et l'état de la population
 string Grille::to_string() const{
 	char delim = '\t';
   stringstream sst;
-  sst << "Nombre de Bactérie S"  << delim << BactS::nb_instancesS() << "\n";
-  sst << "Nombre de Bactérie L" << delim << BactL::nb_instancesL() << "\n";
+  sst << "Nombre de Bactérie S"  << delim << BactS::nb_instancesS() << "\n"; //nb d'instances S
+  sst << "Nombre de Bactérie L" << delim << BactL::nb_instancesL() << "\n"; //nb d'instances L
 
-	if(BactS::nb_instancesS()==0 && BactL::nb_instancesL()==0){
+	if(BactS::nb_instancesS()==0 && BactL::nb_instancesL()==0){ //extinction
 		sst << "L'intégralité de la population est éteinte...Dommage"  << "\n";
 	}
-	else if(BactS::nb_instancesS()>0 && BactL::nb_instancesL()>0){
+	else if(BactS::nb_instancesS()>0 && BactL::nb_instancesL()>0){ //cohabitation
 		sst << "Les lignées de bactéries S et de bactéries L cohabitent."  << "\n";
 	}
-		else if(BactS::nb_instancesS()==0){
+		else if(BactS::nb_instancesS()==0){ //exclusion
 		sst << "La lignée S s'est éteinte."  << "\n";
 	}
   return sst.str();
 }
 
+//Renvoie la grille de manière graphique sur le terminal
 string Grille::affichage(){
   stringstream sst;
-	for(int i=0; i<H_; ++i){
+	for(int i=0; i<H_; ++i){ //séparation entre lignes
 			sst << "----";
-		for(int k=0; k<W_-1; ++k){
+		for(int k=0; k<W_-1; ++k){ //1ere ligne
 			sst << "----";
 		}
 		sst << "-" << "\n";
-		for(int j=0; j<W_;++j){
+		for(int j=0; j<W_;++j){ //pour chaque colonne quel type de bactéries est dans la case
 			if(cases_[i][j]->get_bact() == nullptr){
-				sst << "|   ";
+				sst << "|   "; //absence de bactérie
 			}else if(cases_[i][j]->get_bact()->typeL()){
-				sst << "| L ";
+				sst << "| L "; //présence bactérie L
 			}else{
-				sst << "| S ";
+				sst << "| S "; //présence bactérie S
 			}
 		}
 		sst << "|" << "\n";
 	}
-	for(int k=0; k<W_; ++k){
+	for(int k=0; k<W_; ++k){ //dernière ligne
 		sst << "----";
 	}
 	sst << "-" << "\n";
