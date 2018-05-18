@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include <math.h>
 
 #include "Bacterie.h"
 #include "Case.h"
@@ -38,7 +39,7 @@ Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd,
 		}
 	}
 	//création bactéries
-	for(int i=0; i<W_*H_/2;++i){ // prend la partie entière si W_*H_/2 n'est pas un int
+	for(int i=0; i<floor(W_*H_/2);++i){ // prend la partie entière si W_*H_/2 n'est pas un int
 		BactL* bl = new BactL(Pm,Pd,Raa,Rab);
 		BactS* bs = new BactS(Pm,Pd,Rbb,Rbc);
 	//ajout dans vecteur Bacterie
@@ -212,7 +213,10 @@ void Grille::run() {
 	//métaboliser	
 	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
 		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
-			(*it2)->get_bact()->metaboliser(*it2);
+			if((*it2)->get_bact() != nullptr) {
+				Bacterie* b_cur=(*it2)->get_bact();
+				b_cur->metaboliser(*it2);
+			}
 		}
 	}
 }

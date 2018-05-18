@@ -33,10 +33,9 @@ BactL::~BactL() {
 //                           Public Function members
 // ===========================================================================
 void BactL::metaboliser(Case* c) { 
-	/**A=*A-(*A)*Raa_; 
-	A_=A_+(*A)*Raa_-A_*Rab_;
-	B_=B_+A_*Rab_;*/
-	c->set_A(c->Aout()-c->Aout()*Raa_);
+	/* *A=*A-(*A)*Raa_; 
+	A_=A_+(*A)*Raa_-A_*Rab_;*/
+	c->set_A((c->Aout())-(c->Aout()*Raa_));
 	A_=A_+c->Aout()*Raa_-A_*Rab_;
 	B_=B_+A_*Rab_;
 	

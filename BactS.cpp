@@ -33,7 +33,7 @@ BactS::~BactS() {
 //                           Public Function members
 // ===========================================================================
 void BactS::metaboliser(Case* c) { 
-	c->set_B(c->Bout()-c->Bout()*Rbb_);
+	c->set_B((c->Bout())-(c->Bout()*Rbb_));
 	//*B=*B-(*B)*Rbb_; 
 	B_=B_+c->Bout()*Rbb_-B_*Rbc_;
 	C_=C_+B_*Rbc_;
