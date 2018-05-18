@@ -36,6 +36,7 @@ float Bacterie::w() {
 bool Bacterie::typeL() { 
 	return typeL_;
 }
+
 //Setters
 void Bacterie::set_A(float A) { 
 	A_=A;
