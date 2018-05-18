@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <vector>
 
 #include "Case.h"
 #include "Bacterie.h"
@@ -69,7 +70,7 @@ void Case::set_bact(Bacterie* bact){
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
-void Case::mort_bact() {
+void Case::mort_bact(vector<Bacterie*> &pop) {
 	float proba=(rand()%100+1); //donne une proba entre 1 et 100
 	//cout<<proba<<endl;
 	//cout<<(bact_->Pdeath())*100<<endl;
@@ -79,6 +80,11 @@ void Case::mort_bact() {
 			Aout_=Aout_+bact_->A();
 			Bout_=Bout_+bact_->B();
 			Cout_=Cout_+bact_->C();
+			auto it = pop.begin();
+			while(*it != bact_){
+				++it;
+			}
+			pop.erase(it);
 			bact_=nullptr;
 			delete bact_;
 		}
