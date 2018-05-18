@@ -146,19 +146,40 @@ void Grille::reproduction(){
 		vois[pos_best]->get_bact()->set_B(vois[pos_best]->get_bact()->B()/2);	
 		vois[pos_best]->get_bact()->set_C(vois[pos_best]->get_bact()->C()/2);
 		if(vois[pos_best]->get_bact()->typeL()) {
-			BactL* b=new BactL(Pm_,Pd_,Raa_,Rab_);
-			(*it)->set_bact(b);
-			population_.push_back(b);
-			b->set_A(vois[pos_best]->get_bact()->A()/2);
-			b->set_B(vois[pos_best]->get_bact()->B()/2);
-			b->set_C(vois[pos_best]->get_bact()->C()/2);
+			float proba=(rand()%100+1);
+			if(proba>Pm_*100) { //la bactérie ne mute pas
+				BactL* b=new BactL(Pm_,Pd_,Raa_,Rab_);
+				(*it)->set_bact(b);
+				population_.push_back(b);
+				b->set_A(vois[pos_best]->get_bact()->A()/2);
+				b->set_B(vois[pos_best]->get_bact()->B()/2);
+				b->set_C(vois[pos_best]->get_bact()->C()/2);
+			} else { //la bactérie mute
+				BactS* b=new BactS(Pm_,Pd_,Rbb_,Rbc_);
+				(*it)->set_bact(b);
+				population_.push_back(b);
+				b->set_A(vois[pos_best]->get_bact()->A()/2);
+				b->set_B(vois[pos_best]->get_bact()->B()/2);
+				b->set_C(vois[pos_best]->get_bact()->C()/2);
+			}
 		} else {
-			BactS* b=new BactS(Pm_,Pd_,Rbb_,Rbc_);
-			(*it)->set_bact(b);
-			population_.push_back(b);
-			b->set_A(vois[pos_best]->get_bact()->A()/2);
-			b->set_B(vois[pos_best]->get_bact()->B()/2);
-			b->set_C(vois[pos_best]->get_bact()->C()/2);
+			float proba=(rand()%100+1);
+			if(proba>Pm_*100) { //la bactérie ne mute pas
+				BactS* b=new BactS(Pm_,Pd_,Rbb_,Rbc_);
+				(*it)->set_bact(b);
+				population_.push_back(b);
+				b->set_A(vois[pos_best]->get_bact()->A()/2);
+				b->set_B(vois[pos_best]->get_bact()->B()/2);
+				b->set_C(vois[pos_best]->get_bact()->C()/2);
+			} else { //la bactérie mute
+				BactL* b=new BactL(Pm_,Pd_,Raa_,Rab_);
+				(*it)->set_bact(b);
+				population_.push_back(b);
+				b->set_A(vois[pos_best]->get_bact()->A()/2);
+				b->set_B(vois[pos_best]->get_bact()->B()/2);
+				b->set_C(vois[pos_best]->get_bact()->C()/2);
+			
+			}
 		}					
 	}
 }

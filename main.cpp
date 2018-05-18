@@ -50,14 +50,29 @@ int main () {
 	
 	Grille* test = new Grille(10,10,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	
-	cout<<test->to_string()<<endl;
+	/*cout<<test->to_string()<<endl;
 	cout<<test->affichage()<<endl;
 	
 	for(int i=0;i<10000;++i) { 
 		test->run();
 	}
 	cout<<test->to_string()<<endl;
-	cout<<test->affichage()<<endl;
+	cout<<test->affichage()<<endl;*/
+	
+	delete test;
+	
+	Grille* laGrille = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	cout<<laGrille->to_string()<<endl;
+	cout<<laGrille->affichage()<<endl;
+	
+	for(int i=0;i<5000;++i){
+		laGrille->run();
+	}
+	cout<<laGrille->to_string()<<endl;
+	cout<<laGrille->affichage()<<endl;
+	
+	delete laGrille;
+	
 	
 	return 0;
 }
