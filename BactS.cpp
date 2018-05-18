@@ -13,8 +13,8 @@ int BactS::nb_instancesS_=0;
 //                                Constructors
 // =========================================================================== 
 BactS::BactS(float Pm, float Pd, float Rbb, float Rbc) { 
-	Pdeath_ = Pm;
-	Pmut_ = Pd; 
+	Pdeath_ = Pd;
+	Pmut_ = Pm; 
 	w_ = 0;
 	Rbc_=Rbc;
 	Rbb_=Rbb;

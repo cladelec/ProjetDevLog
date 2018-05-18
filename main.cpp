@@ -26,7 +26,9 @@ int main () {
 
 	Grille* laPititeGrille = new Grille(3,3,2,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laPititeGrille->to_string()<<endl;
-	cout<<laPititeGrille->affichage()<<endl;
+	cout<<laPititeGrille->affichage()<<endl; 
+	float proba=(rand()%100+1); 
+	std::cout << proba << std::endl; 
 
 	return 0;
 }

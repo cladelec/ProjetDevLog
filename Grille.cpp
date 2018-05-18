@@ -236,7 +236,7 @@ string Grille::to_string() const{
   return sst.str();
 }
 
-//Renvoie la grille de manière graphique sur le terminal
+//Renvoie la grille de  jolie manière graphique sur le terminal
 string Grille::affichage(){
   stringstream sst;
 	for(int i=0; i<H_; ++i){ //séparation entre lignes

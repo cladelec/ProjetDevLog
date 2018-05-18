@@ -13,8 +13,8 @@ int BactL::nb_instancesL_=0;
 //                                Constructors
 // =========================================================================== 
 BactL::BactL(float Pm, float Pd, float Raa, float Rab)  { 
-	Pdeath_ = Pm;
-	Pmut_ = Pd; 
+	Pdeath_ = Pd;
+	Pmut_ = Pm; 
 	w_ = 0;
 	Rab_=Rab;
 	Raa_=Raa;
