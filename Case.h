@@ -7,6 +7,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <vector>
 
 #include "Bacterie.h"
 
@@ -45,7 +46,7 @@ class Case {
   // =========================================================================
   //                          Public Function members
   // =========================================================================
-		void mort_bact() ;
+		void mort_bact(vector<Bacterie*> &pop) ;
 		
 	protected :
   // =========================================================================
