@@ -34,7 +34,7 @@ Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd,
 	//ajout cases dans tableau
 	for(int i=0; i<H_; ++i){
 		for(int j=0; j<W_;++j){
-			Case* c = new Case(j,i,A_init_);
+			Case* c = new Case(i,j,A_init_);
 			cases_[i].push_back(c);
 		}
 	}
@@ -131,6 +131,7 @@ void Grille::diffusion(){
 }
 
 void Grille::reproduction(){
+	maj_gap();
 	for(vector<Case*>::iterator it = gap_.begin(); it != gap_.end(); ++it){
 		vector<Case*> vois=moore(**it);
 		int pos_best=0; //quel est le meilleur ??
@@ -170,6 +171,13 @@ void Grille::maj_gap(){
 			}	
 		}
 	}
+	/*for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
+		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
+			if((*it2)->get_bact()==nullptr) { //si pas de bactérie
+				gap_.push_back(*it2); //on ajoute dans le vecteur de gap
+			}
+		}
+	}*/
 	random_shuffle(gap_.begin(),gap_.end());
 }
 
@@ -178,22 +186,24 @@ vector<Case*> Grille::moore(Case c){
 	vector<Case*> ret;
 	for (int i=-1;i<=1;++i){
 		for (int j=-1;j<=1;++j){
-			int x=c.get_x()+i;
-			int y=c.get_y()+j;
-			if(cases_[c.get_x()+i][c.get_y()+j]->get_bact()==nullptr){
-				//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
-				if(c.get_x()+i>=H_) { 
-					x=0;
-				} 
-				if(c.get_x()+i<0) { 
-					x=H_-1;
-				} 
-				if(c.get_y()+j>=W_) {
-					y=0;
-				} 
-				if(c.get_y()+j<0) { 
-					y=W_-1;
-				}
+			int x=c.get_ord()+i;
+			int y=c.get_abs()+j;
+			
+			//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
+			if(x>=H_) { 
+				x=0;
+			} 
+			if(x<0) { 
+				x=H_-1;
+			} 
+			if(y>=W_) {
+				y=0;
+			} 
+			if(y<0) { 
+				y=W_-1;
+			}
+			
+			if(cases_[x][y]->get_bact()!=nullptr){
 				ret.push_back(cases_[x][y]);
 			}
 		}

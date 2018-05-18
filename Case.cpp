@@ -14,7 +14,7 @@ using namespace std;
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-Case::Case(int x, int y, float Ainit) : x_(x), y_(y), Bout_(0.0), Cout_(0.0), Aout_(Ainit), bact_(nullptr) {}
+Case::Case(int x, int y, float Ainit) : ord_(x), abs_(y), Bout_(0.0), Cout_(0.0), Aout_(Ainit), bact_(nullptr) {}
 
 // ===========================================================================
 //                                 Destructor
@@ -24,12 +24,12 @@ Case::~Case()=default;
 // ===========================================================================
 //                            Getters' definitions
 // ===========================================================================
-float Case::get_x() {
-	return x_;
+float Case::get_ord() {
+	return ord_;
 }
 
-float Case::get_y() {
-	return y_;
+float Case::get_abs() {
+	return abs_;
 }
 
 float Case::Aout() {
@@ -88,8 +88,8 @@ void Case::mort_bact(vector<Bacterie*> &pop) {
 				++it;
 			}
 			pop.erase(it);
-			bact_=nullptr;
 			delete bact_;
+			bact_=nullptr;
 		}
 	}	
 }
