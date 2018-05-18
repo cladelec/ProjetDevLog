@@ -17,7 +17,9 @@ int main () {
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
 	
-	laGrille->run();
+	for(int i=0;i<5;++i){
+		laGrille->run();
+	}
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
 
