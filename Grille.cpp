@@ -206,7 +206,7 @@ void Grille::run() {
 	//mort des bacteries
 	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
 		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
-			(*it2)->mort_bact();
+			(*it2)->mort_bact(population_);
 		}
 	}
 	reproduction();
