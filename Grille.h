@@ -51,6 +51,7 @@ class Grille {
 		vector<Case*> moore(Case c);
 		void run();
 		string affichage();
+		void lavage();
 
 	protected :
   // =========================================================================
@@ -86,12 +87,5 @@ inline int Grille::A_init() const{
 	return A_init_;
 }
 
-/*inline vector<Bacterie> Grille::population() const{
-	return population_;
-}
-
-inline vector<Case> Grille::cases() const{
-	return cases_;
-}*/
 
 #endif // GRILLE_H_

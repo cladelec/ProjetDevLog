@@ -67,7 +67,12 @@ int main () {
 	
 	for(int i=0;i<5000;++i){
 		laGrille->run();
+		if(i%3==0){
+			laGrille->lavage();
+		}
 	}
+	
+	
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
 	

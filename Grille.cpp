@@ -301,3 +301,15 @@ string Grille::affichage(){
 	sst << "-" << "\n";
 	return sst.str();
 }
+
+//Change les métabolites exterieurs : remets tout à 0 et à Ainit
+void Grille::lavage() {
+	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
+		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
+				(*it2)->set_A(A_init_);
+				(*it2)->set_B(0.0);
+				(*it2)->set_C(0.0);
+		}
+	}
+}
+
