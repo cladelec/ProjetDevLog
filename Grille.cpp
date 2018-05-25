@@ -35,7 +35,7 @@ Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd,
 	for(int i=0; i<H_; ++i){
 		for(int j=0; j<W_;++j){
 			Case* c = new Case(i,j,A_init_);
-			cases_[j].push_back(c);
+			cases_[i].push_back(c);
 		}
 	}
 	//création bactéries
@@ -146,31 +146,60 @@ void Grille::reproduction(){
 		vois[pos_best]->get_bact()->set_B(vois[pos_best]->get_bact()->B()/2);	
 		vois[pos_best]->get_bact()->set_C(vois[pos_best]->get_bact()->C()/2);
 		if(vois[pos_best]->get_bact()->typeL()) {
-			BactL* b=new BactL(Pm_,Pd_,Raa_,Rab_);
-			(*it)->set_bact(b);
-			population_.push_back(b);
-			b->set_A(vois[pos_best]->get_bact()->A()/2);
-			b->set_B(vois[pos_best]->get_bact()->B()/2);
-			b->set_C(vois[pos_best]->get_bact()->C()/2);
+			float proba=(rand()%100+1);
+			if(proba>Pm_*100) { //la bactérie ne mute pas
+				BactL* b=new BactL(Pm_,Pd_,Raa_,Rab_);
+				(*it)->set_bact(b);
+				population_.push_back(b);
+				b->set_A(vois[pos_best]->get_bact()->A()/2);
+				b->set_B(vois[pos_best]->get_bact()->B()/2);
+				b->set_C(vois[pos_best]->get_bact()->C()/2);
+			} else { //la bactérie mute
+				BactS* b=new BactS(Pm_,Pd_,Rbb_,Rbc_);
+				(*it)->set_bact(b);
+				population_.push_back(b);
+				b->set_A(vois[pos_best]->get_bact()->A()/2);
+				b->set_B(vois[pos_best]->get_bact()->B()/2);
+				b->set_C(vois[pos_best]->get_bact()->C()/2);
+			}
 		} else {
-			BactS* b=new BactS(Pm_,Pd_,Rbb_,Rbc_);
-			(*it)->set_bact(b);
-			population_.push_back(b);
-			b->set_A(vois[pos_best]->get_bact()->A()/2);
-			b->set_B(vois[pos_best]->get_bact()->B()/2);
-			b->set_C(vois[pos_best]->get_bact()->C()/2);
+			float proba=(rand()%100+1);
+			if(proba>Pm_*100) { //la bactérie ne mute pas
+				BactS* b=new BactS(Pm_,Pd_,Rbb_,Rbc_);
+				(*it)->set_bact(b);
+				population_.push_back(b);
+				b->set_A(vois[pos_best]->get_bact()->A()/2);
+				b->set_B(vois[pos_best]->get_bact()->B()/2);
+				b->set_C(vois[pos_best]->get_bact()->C()/2);
+			} else { //la bactérie mute
+				BactL* b=new BactL(Pm_,Pd_,Raa_,Rab_);
+				(*it)->set_bact(b);
+				population_.push_back(b);
+				b->set_A(vois[pos_best]->get_bact()->A()/2);
+				b->set_B(vois[pos_best]->get_bact()->B()/2);
+				b->set_C(vois[pos_best]->get_bact()->C()/2);
+			
+			}
 		}					
 	}
 }
 
 void Grille::maj_gap(){
+	gap_.erase(gap_.begin(),gap_.end());
 	for(int x=0; x<H_; ++x){
 		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
-			if(cases_[x][y]->get_bact()==nullptr) { //si pas de bactérie
+			if(cases_[x][y]->get_bact()==nullptr){ //si pas de bactérie
 				gap_.push_back(cases_[x][y]); //on ajoute dans le vecteur de gap
 			}	
 		}
 	}
+	/*for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
+		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
+			if((*it2)->get_bact()==nullptr) { //si pas de bactérie
+				gap_.push_back(*it2); //on ajoute dans le vecteur de gap
+			}
+		}
+	}*/
 	random_shuffle(gap_.begin(),gap_.end());
 }
 
@@ -179,22 +208,24 @@ vector<Case*> Grille::moore(Case c){
 	vector<Case*> ret;
 	for (int i=-1;i<=1;++i){
 		for (int j=-1;j<=1;++j){
-			int x=c.get_x()+i;
-			int y=c.get_y()+j;
-			if(cases_[c.get_x()+i][c.get_y()+j]->get_bact()!=nullptr){
-				//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
-				if(c.get_x()+i>=H_) { 
-					x=0;
-				} 
-				if(c.get_x()+i<0) { 
-					x=H_-1;
-				} 
-				if(c.get_y()+j>=W_) {
-					y=0;
-				} 
-				if(c.get_y()+j<0) { 
-					y=W_-1;
-				}
+			int x=c.get_ord()+i;
+			int y=c.get_abs()+j;
+			
+			//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
+			if(x>=H_) { 
+				x=0;
+			} 
+			if(x<0) { 
+				x=H_-1;
+			} 
+			if(y>=W_) {
+				y=0;
+			} 
+			if(y<0) { 
+				y=W_-1;
+			}
+			
+			if(cases_[x][y]->get_bact()!=nullptr){
 				ret.push_back(cases_[x][y]);
 			}
 		}
@@ -210,7 +241,10 @@ void Grille::run() {
 			(*it2)->mort_bact(population_);
 		}
 	}
+	//cout<<affichage()<<endl;
 	reproduction();
+	//cout<<affichage()<<endl;
+	
 	//métaboliser	
 	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
 		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
