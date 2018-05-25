@@ -86,11 +86,11 @@ int main () {
 	//                          	SIMULATIONS
 	// ===========================================================================
 	
-	Grille* Grille1 = new Grille(32,32,15.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	Grille* Grille1 = new Grille(32,32,15.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
 	
 	for(int i=0;i<5000;++i){
 		Grille1->run();
-		if(i%1200==0){
+		if(i%6==0){
 			Grille1->lavage();
 		}
 	}	
@@ -99,11 +99,11 @@ int main () {
 	cout<<Grille1->to_string()<<endl;
 	delete Grille1;
 	
-	Grille* Grille2 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	Grille* Grille2 = new Grille(32,32,30.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
 	
 	for(int i=0;i<5000;++i){
 		Grille2->run();
-		if(i%1200==0){
+		if(i%6==0){
 			Grille2->lavage();
 		}
 	}
@@ -113,11 +113,11 @@ int main () {
 	
 	delete Grille2;	
 	
-	Grille* Grille3 = new Grille(32,32,45.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	Grille* Grille3 = new Grille(32,32,45.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
 	
 	for(int i=0;i<5000;++i){
 		Grille3->run();
-		if(i%1200==0){
+		if(i%6==0){
 			Grille3->lavage();
 		}
 	}	
