@@ -4,19 +4,27 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <fstream>
 
 #include "Grille.h"
+
+#include <time.h>
 
 // ===========================================================================
 //                                    MAIN
 // ===========================================================================
 int main () {
 	printf("Hello world \n");
-	
+	srand(time(NULL)); //permet d'éviter d'avoir toujours les mêmes aléatoires
+
+	// ===========================================================================
+	//                          	SIMULATIONS
+	// ===========================================================================
+
 	/*Grille* laGrille = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
-	
+
 	for(int i=0;i<5;++i){
 		laGrille->run();
 	}
@@ -86,11 +94,13 @@ int main () {
 	//                          	SIMULATIONS
 	// ===========================================================================
 	
-	Grille* Grille1 = new Grille(32,32,15.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
+	int T=7; //temps entre deux lavages
+
+	Grille* Grille1 = new Grille(32,32,15.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	
 	for(int i=0;i<5000;++i){
 		Grille1->run();
-		if(i%6==0){
+		if(i%T==0){
 			Grille1->lavage();
 		}
 	}	
@@ -99,11 +109,11 @@ int main () {
 	cout<<Grille1->to_string()<<endl;
 	delete Grille1;
 	
-	Grille* Grille2 = new Grille(32,32,30.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
+	Grille* Grille2 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	
 	for(int i=0;i<5000;++i){
 		Grille2->run();
-		if(i%6==0){
+		if(i%T==0){
 			Grille2->lavage();
 		}
 	}
@@ -113,11 +123,11 @@ int main () {
 	
 	delete Grille2;	
 	
-	Grille* Grille3 = new Grille(32,32,45.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
+	Grille* Grille3 = new Grille(32,32,45.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	
 	for(int i=0;i<5000;++i){
 		Grille3->run();
-		if(i%6==0){
+		if(i%T==0){
 			Grille3->lavage();
 		}
 	}	
@@ -126,9 +136,9 @@ int main () {
 	cout<<Grille3->to_string()<<endl;
 	
 	delete Grille3;
-	*/
+
 	
-	Grille * Grille1 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	/*Grille * Grille1 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	remove("stats1.txt");
 	for(int i=0;i<5000;++i){
 		Grille1->run();
@@ -161,7 +171,7 @@ int main () {
 			Grille3->lavage();
 		}
 	}	
-	delete Grille3;
+	delete Grille3;*/
 	
 	return 0;
 }
