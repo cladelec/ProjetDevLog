@@ -16,15 +16,16 @@
 int main () {
 	printf("Hello world \n");
 	srand(time(NULL)); //permet d'éviter d'avoir toujours les mêmes aléatoires
-
-	// ===========================================================================
-	//                          	SIMULATIONS
-	// ===========================================================================
-
+	
+	
+// ===========================================================================
+//                                   TESTS
+// ===========================================================================
+	
 	/*Grille* laGrille = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
-
+	
 	for(int i=0;i<5;++i){
 		laGrille->run();
 	}
@@ -74,9 +75,10 @@ int main () {
 	Grille* laGrille1 = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
-	
+	remove("stats.txt");
 	for(int i=0;i<5000;++i){
 		laGrille->run();
+		laGrille->stats("stats.txt");
 		if(i%3==0){
 			laGrille->lavage();
 		}
@@ -95,7 +97,7 @@ int main () {
 	// ===========================================================================
 	
 	int T=7; //temps entre deux lavages
-
+	
 	Grille* Grille1 = new Grille(32,32,15.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	
 	for(int i=0;i<5000;++i){
@@ -136,9 +138,9 @@ int main () {
 	cout<<Grille3->to_string()<<endl;
 	
 	delete Grille3;
-
 	
-	/*Grille * Grille1 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	
+	Grille * Grille1 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	remove("stats1.txt");
 	for(int i=0;i<5000;++i){
 		Grille1->run();
@@ -171,7 +173,7 @@ int main () {
 			Grille3->lavage();
 		}
 	}	
-	delete Grille3;*/
+	delete Grille3;
 	
 	return 0;
 }
