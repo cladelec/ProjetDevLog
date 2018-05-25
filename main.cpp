@@ -24,9 +24,9 @@ int main () {
 	cout<<laGrille->affichage()<<endl;
 	
 	delete laGrille;
-	*/
+	
 
-	/*Grille* laPititeGrille = new Grille(3,3,2,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	Grille* laPititeGrille = new Grille(3,3,2,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laPititeGrille->to_string()<<endl;
 	cout<<laPititeGrille->affichage()<<endl; 
 	float proba=(rand()%100+1); 
@@ -46,22 +46,24 @@ int main () {
 	}
 	cout<<laPititeGrille->affichage()<<endl;
 	
-	delete laPititeGrille;*/
+	delete laPititeGrille;
 	
 	Grille* test = new Grille(10,10,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	
-	/*cout<<test->to_string()<<endl;
+	cout<<test->to_string()<<endl;
 	cout<<test->affichage()<<endl;
 	
 	for(int i=0;i<10000;++i) { 
 		test->run();
 	}
 	cout<<test->to_string()<<endl;
-	cout<<test->affichage()<<endl;*/
+	cout<<test->affichage()<<endl;
 	
-	delete test;
+	delete test; 
+	*/
 	
-	Grille* laGrille = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	/*
+	Grille* laGrille1 = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
 	
@@ -78,6 +80,56 @@ int main () {
 	
 	delete laGrille;
 	
+	*/
+	
+	// ===========================================================================
+	//                          	SIMULATIONS
+	// ===========================================================================
+	
+	Grille* Grille1 = new Grille(32,32,15.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	
+	for(int i=0;i<5000;++i){
+		Grille1->run();
+		if(i%1200==0){
+			Grille1->lavage();
+		}
+	}	
+	
+	cout<<"Grille 1 : "<<endl;
+	cout<<Grille1->to_string()<<endl;
+	delete Grille1;
+	
+	Grille* Grille2 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	
+	for(int i=0;i<5000;++i){
+		Grille2->run();
+		if(i%1200==0){
+			Grille2->lavage();
+		}
+	}
+	
+	cout<<"Grille 2 : "<<endl;
+	cout<<Grille2->to_string()<<endl;
+	
+	delete Grille2;	
+	
+	Grille* Grille3 = new Grille(32,32,45.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	
+	for(int i=0;i<5000;++i){
+		Grille3->run();
+		if(i%1200==0){
+			Grille3->lavage();
+		}
+	}	
+	
+	cout<<"Grille 3 : "<<endl;
+	cout<<Grille3->to_string()<<endl;
+	
+	delete Grille3;
+	
 	
 	return 0;
 }
+
+
+
