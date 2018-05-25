@@ -7,11 +7,14 @@
 
 #include "Grille.h"
 
+#include <time.h>
+
 // ===========================================================================
 //                                    MAIN
 // ===========================================================================
 int main () {
 	printf("Hello world \n");
+	srand(time(NULL));
 	
 	/*Grille* laGrille = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laGrille->to_string()<<endl;
@@ -90,7 +93,7 @@ int main () {
 	
 	for(int i=0;i<5000;++i){
 		Grille1->run();
-		if(i%1200==0){
+		if(i%7==0){
 			Grille1->lavage();
 		}
 	}	
@@ -103,7 +106,7 @@ int main () {
 	
 	for(int i=0;i<5000;++i){
 		Grille2->run();
-		if(i%1200==0){
+		if(i%7==0){
 			Grille2->lavage();
 		}
 	}
@@ -117,7 +120,7 @@ int main () {
 	
 	for(int i=0;i<5000;++i){
 		Grille3->run();
-		if(i%1200==0){
+		if(i%7==0){
 			Grille3->lavage();
 		}
 	}	
