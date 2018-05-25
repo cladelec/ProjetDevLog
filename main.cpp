@@ -126,7 +126,42 @@ int main () {
 	cout<<Grille3->to_string()<<endl;
 	
 	delete Grille3;
+	*/
 	
+	Grille * Grille1 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	remove("stats1.txt");
+	for(int i=0;i<5000;++i){
+		Grille1->run();
+		Grille1->stats("stats1.txt");
+		if(i%3==0){
+			Grille1->lavage();
+		}
+	}	
+	delete Grille1; 
+	
+	
+	Grille * Grille2 = new Grille(32,32,45.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	remove("stats2.txt");
+	for(int i=0;i<5000;++i){
+		Grille2->run();
+		Grille2->stats("stats2.txt");
+		if(i%3==0){
+			Grille2->lavage();
+		}
+	}	
+	delete Grille2;
+	
+	
+	Grille * Grille3 = new Grille(32,32,60.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	remove("stats3.txt");
+	for(int i=0;i<5000;++i){
+		Grille3->run();
+		Grille3->stats("stats3.txt");
+		if(i%3==0){
+			Grille3->lavage();
+		}
+	}	
+	delete Grille3;
 	
 	return 0;
 }
