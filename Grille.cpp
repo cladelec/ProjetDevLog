@@ -18,6 +18,7 @@
 #include <sstream>
 #include <string>
 
+#include <fstream>
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
@@ -275,6 +276,7 @@ string Grille::to_string() const{
   return sst.str();
 }
 
+
 //Renvoie la grille de  jolie manière graphique sur le terminal
 string Grille::affichage(){
   stringstream sst;
@@ -301,3 +303,17 @@ string Grille::affichage(){
 	sst << "-" << "\n";
 	return sst.str();
 }
+
+//Ecrit les stats à la suite du fichier texte passé en paramétre
+//Donner un fichier vierge
+void Grille::stats(string const monFichier) { 
+	//remove(monFichier.c_str());
+	ofstream monFlux(monFichier.c_str(),ios::app);
+	if(monFlux) { 
+		monFlux << BactS::nb_instancesS() << "	"  << BactL::nb_instancesL()  << endl; 
+
+	} else { 
+		cout << "ERREUR: Impossible d'ouvrir le fichier" << endl;
+	}
+}
+

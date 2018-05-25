@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <fstream>
 
 #include "Grille.h"
 
@@ -64,9 +65,10 @@ int main () {
 	Grille* laGrille = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
-	
+	remove("stats.txt");
 	for(int i=0;i<5000;++i){
 		laGrille->run();
+		laGrille->stats("stats.txt");
 	}
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;

@@ -51,6 +51,7 @@ class Grille {
 		vector<Case*> moore(Case c);
 		void run();
 		string affichage();
+		void stats(string const monFichier);
 
 	protected :
   // =========================================================================
