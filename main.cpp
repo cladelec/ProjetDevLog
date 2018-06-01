@@ -96,9 +96,9 @@ int main () {
 	//                          	SIMULATIONS
 	// ===========================================================================
 	
-	int T=7; //temps entre deux lavages
+	int T=30; //temps entre deux lavages
 	
-	Grille* Grille1 = new Grille(32,32,15.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	Grille* Grille1 = new Grille(32,32,15.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
 	
 	for(int i=0;i<5000;++i){
 		Grille1->run();
@@ -111,7 +111,7 @@ int main () {
 	cout<<Grille1->to_string()<<endl;
 	delete Grille1;
 	
-	Grille* Grille2 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	Grille* Grille2 = new Grille(32,32,30.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
 	
 	for(int i=0;i<5000;++i){
 		Grille2->run();
@@ -125,7 +125,7 @@ int main () {
 	
 	delete Grille2;	
 	
-	Grille* Grille3 = new Grille(32,32,45.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	Grille* Grille3 = new Grille(32,32,45.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
 	
 	for(int i=0;i<5000;++i){
 		Grille3->run();
@@ -140,7 +140,7 @@ int main () {
 	delete Grille3;
 	
 	
-	Grille * Grille1 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	/*Grille * Grille1 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	remove("stats1.txt");
 	for(int i=0;i<5000;++i){
 		Grille1->run();
@@ -173,7 +173,7 @@ int main () {
 			Grille3->lavage();
 		}
 	}	
-	delete Grille3;
+	delete Grille3;*/
 	
 	return 0;
 }
