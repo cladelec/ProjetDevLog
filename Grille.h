@@ -53,6 +53,7 @@ class Grille {
 		string affichage();
 		void lavage();
 		void stats(string const monFichier);
+		char etat() ;
 
 	protected :
   // =========================================================================

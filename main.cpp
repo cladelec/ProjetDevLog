@@ -22,7 +22,7 @@ int main () {
 //                                   TESTS
 // ===========================================================================
 	
-	/*Grille* laGrille = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+	Grille* laGrille = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
 	
@@ -41,7 +41,7 @@ int main () {
 	float proba=(rand()%100+1); 
 	std::cout << proba << std::endl; 
 	
-	int i;
+	/*int i;
 	for(i=0;i<100;++i) { 
 		laPititeGrille->run();
 		cout<<laPititeGrille->to_string()<<endl;
@@ -96,7 +96,7 @@ int main () {
 	//                          	SIMULATIONS
 	// ===========================================================================
 	
-	int T=30; //temps entre deux lavages
+	/*int T=8; //temps entre deux lavages
 	
 	Grille* Grille1 = new Grille(32,32,15.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
 	
@@ -137,7 +137,7 @@ int main () {
 	cout<<"Grille 3 : "<<endl;
 	cout<<Grille3->to_string()<<endl;
 	
-	delete Grille3;
+	delete Grille3;*/
 	
 	
 	/*Grille * Grille1 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
@@ -175,8 +175,32 @@ int main () {
 	}	
 	delete Grille3;*/
 	
+	// ===========================================================================
+	//                  DETERMINATION DES TRANSITIONS DE PHASE
+	// ===========================================================================
+	
+	
+	/*char etat_cur='C';
+	char etat_prev='C';
+	
+	for(float A=0.0;A<=50.0;A=A+5.0) {
+		for(int T=1;T<=1500;T=T+50) {
+			Grille * test = new Grille(32,32,A,0.0,0.02,0.1,0.1,0.1,0.1,0.1);		
+			for(int i=0;i<5000;++i){
+				test->run();
+				if(i%T == 0){
+					test->lavage();
+				}
+			}
+			etat_prev=etat_cur;
+			etat_cur=test->etat();
+			if(etat_cur!=etat_prev) {
+				cout<<"A= "<<A<<"	T= "<<T<<"	"<<etat_cur<<endl;
+			}
+			delete test;	
+		}
+	}*/
+	
 	return 0;
 }
-
-
 
