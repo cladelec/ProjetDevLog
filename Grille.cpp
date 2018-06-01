@@ -328,3 +328,16 @@ void Grille::stats(string const monFichier) {
 	}
 }
 
+char Grille::etat() {
+	if(BactL::nb_instancesL()==0){ //extinction
+		return 'I';
+	}
+	else if(BactS::nb_instancesS()>0 && BactL::nb_instancesL()>0){ //cohabitation
+		return 'C';
+	}
+	else if(BactS::nb_instancesS()==0){ //exclusion
+		return 'U';
+	}
+
+}
+
