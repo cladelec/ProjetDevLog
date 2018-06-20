@@ -15,10 +15,10 @@
 
 #include <vector>
 #include <algorithm>
-#include <sstream>
 #include <string>
-
+#include <sstream>
 #include <fstream>
+
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
@@ -66,6 +66,7 @@ Grille::Grille(const int W, const int H, const float A_init, float Pm, float Pd,
 //                                 Destructor
 // ===========================================================================
 Grille::~Grille() { 
+	//supprimer les bactéries de la grille
 	vector<Bacterie *>::iterator it=population_.begin(); 
 	vector<Bacterie *>::iterator popto_remove;
 	while(it != population_.end()){
@@ -73,10 +74,9 @@ Grille::~Grille() {
 		 ++it; 
 		 delete *popto_remove;
 	}
-	
+	//supprimer les cases de la grille
 	vector<vector<Case *>>::iterator cases1D=cases_.begin();
 	vector<Case *>::iterator cases2D=cases1D->begin();
-	//cout <<*cases2D << endl;
 	vector<Case *>::iterator casesto_remove;
 	while(cases1D != cases_.end()) { 
 		vector<Case *>::iterator cases2D=cases1D->begin();
@@ -92,6 +92,7 @@ Grille::~Grille() {
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
+
 void Grille::diffusion(){
 	for(int x=0; x<H_; ++x){
 		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
@@ -101,7 +102,7 @@ void Grille::diffusion(){
 			float binit=cases_[x][y]->Bout();
 			float cinit=cases_[x][y]->Cout();
 			
-			//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
+			//Grille Toroidale
 			for (int i=-1;i<=1;++i){
 				int indx=x+i;
 				for (int j=-1;j<=1;++j){
@@ -135,7 +136,7 @@ void Grille::reproduction(){
 	maj_gap();
 	for(vector<Case*>::iterator it = gap_.begin(); it != gap_.end(); ++it){
 		vector<Case*> vois=moore(**it);
-		int pos_best=0; //quel est le meilleur ??
+		int pos_best=0; //lequel est le meilleur ??
 		int pos=0;
 		for(vector<Case*>::iterator it2 = vois.begin(); it2 != vois.end(); ++it2){
 			if( ((*it2)->get_bact())->w() > vois[pos_best]->get_bact()->w() ){
@@ -185,26 +186,21 @@ void Grille::reproduction(){
 	}
 }
 
+//met à jour le vecteur de cases vides
 void Grille::maj_gap(){
 	gap_.erase(gap_.begin(),gap_.end());
 	for(int x=0; x<H_; ++x){
 		for(int y=0; y<W_;++y){ //on parcourt toutes les cases
 			if(cases_[x][y]->get_bact()==nullptr){ //si pas de bactérie
-				gap_.push_back(cases_[x][y]); //on ajoute dans le vecteur de gap
+				gap_.push_back(cases_[x][y]); 			 //on ajoute dans le vecteur de gap
 			}	
 		}
 	}
-	/*for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
-		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
-			if((*it2)->get_bact()==nullptr) { //si pas de bactérie
-				gap_.push_back(*it2); //on ajoute dans le vecteur de gap
-			}
-		}
-	}*/
 	random_shuffle(gap_.begin(),gap_.end());
 }
 
- //Pre-conditions : bien donner une case sans bacterie en paramètre
+//renvoie le voisinage de Moore
+//Preconditions : fournir une case sans bacterie en paramètre
 vector<Case*> Grille::moore(Case c){
 	vector<Case*> ret;
 	for (int i=-1;i<=1;++i){
@@ -212,7 +208,7 @@ vector<Case*> Grille::moore(Case c){
 			int x=c.get_ord()+i;
 			int y=c.get_abs()+j;
 			
-			//GRILLE TOROIDALE : AJOUT DE 4 IF (EN HAUT, BAS, GAUCHE, DROITE)
+			//grille Toroidale
 			if(x>=H_) { 
 				x=0;
 			} 
@@ -234,17 +230,17 @@ vector<Case*> Grille::moore(Case c){
 	return ret;
 }
 
+//méthodes à effectuer à chaque pas de temps de simulation
 void Grille::run() {
 	diffusion();
+
 	//mort des bacteries
 	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
 		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
 			(*it2)->mort_bact(population_);
 		}
 	}
-	//cout<<affichage()<<endl;
 	reproduction();
-	//cout<<affichage()<<endl;
 	
 	//métaboliser	
 	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
@@ -257,7 +253,7 @@ void Grille::run() {
 	}
 }
 
-//Renvoie le le nombre de bactéries S et L et l'état de la population
+//renvoie le le nombre de bactéries S et L et l'état de la population
 string Grille::to_string() const{
 	char delim = '\t';
   stringstream sst;
@@ -277,7 +273,7 @@ string Grille::to_string() const{
 }
 
 
-//Renvoie la grille de  jolie manière graphique sur le terminal
+//renvoie la grille de  jolie manière graphique sur le terminal
 string Grille::affichage(){
   stringstream sst;
 	for(int i=0; i<H_; ++i){ //séparation entre lignes
@@ -304,7 +300,7 @@ string Grille::affichage(){
 	return sst.str();
 }
 
-//Change les métabolites exterieurs : remets tout à 0 et à Ainit
+//change les métabolites exterieurs : remet tout à 0 et à Ainit
 void Grille::lavage() {
 	for(vector<vector<Case*>>::iterator it=cases_.begin(); it != cases_.end(); ++it){
 		for(vector<Case*>::iterator it2 = it->begin(); it2!=it->end(); ++it2){
@@ -315,10 +311,9 @@ void Grille::lavage() {
 	}
 } 
 
-//Ecrit les stats à la suite du fichier texte passé en paramétre
-//Donner un fichier vierge
+//écrit les stats à la suite du fichier texte passé en paramètre
+//Préconditions : Donner un fichier vierge
 void Grille::stats(string const monFichier) { 
-	//remove(monFichier.c_str());
 	ofstream monFlux(monFichier.c_str(),ios::app);
 	if(monFlux) { 
 		monFlux << BactS::nb_instancesS() << "	"  << BactL::nb_instancesL()  << endl; 
@@ -327,7 +322,7 @@ void Grille::stats(string const monFichier) {
 		cout << "ERREUR: Impossible d'ouvrir le fichier" << endl;
 	}
 }
-
+//renvoie l'état de la grille
 char Grille::etat() {
 	if(BactL::nb_instancesL()==0){ //extinction
 		return 'I';
@@ -338,6 +333,4 @@ char Grille::etat() {
 	else if(BactS::nb_instancesS()==0){ //exclusion
 		return 'U';
 	}
-
 }
-

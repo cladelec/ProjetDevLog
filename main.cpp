@@ -22,26 +22,33 @@ int main () {
 //                                   TESTS
 // ===========================================================================
 	
+/*
+	//test du constructeur
 	Grille* laGrille = new Grille(32,32,20.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
 	
+  //test de la méthode run()
 	for(int i=0;i<5;++i){
 		laGrille->run();
 	}
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
 	
+  //test du destructeur
 	delete laGrille;
 	
-
 	Grille* laPititeGrille = new Grille(3,3,2,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	cout<<laPititeGrille->to_string()<<endl;
 	cout<<laPititeGrille->affichage()<<endl; 
+
+	//test random
 	float proba=(rand()%100+1); 
-	std::cout << proba << std::endl; 
+	std::cout << proba << std::endl;
+*/ 
 	
-	/*int i;
+/*
+	int i;
 	for(i=0;i<100;++i) { 
 		laPititeGrille->run();
 		cout<<laPititeGrille->to_string()<<endl;
@@ -84,19 +91,18 @@ int main () {
 		}
 	}
 	
-	
 	cout<<laGrille->to_string()<<endl;
 	cout<<laGrille->affichage()<<endl;
 	
 	delete laGrille;
-	
 	*/
 	
 	// ===========================================================================
 	//                          	SIMULATIONS
 	// ===========================================================================
 	
-	/*int T=8; //temps entre deux lavages
+ 	//test pour différentes valeurs de T et Ainit
+	int T=6; //temps entre deux lavages
 	
 	Grille* Grille1 = new Grille(32,32,15.0,0.001,0.02,0.1,0.1,0.1,0.1,0.1);
 	
@@ -137,10 +143,11 @@ int main () {
 	cout<<"Grille 3 : "<<endl;
 	cout<<Grille3->to_string()<<endl;
 	
-	delete Grille3;*/
+	delete Grille3;
 	
 	
-	/*Grille * Grille1 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
+/*
+	Grille * Grille1 = new Grille(32,32,30.0,0.0,0.02,0.1,0.1,0.1,0.1,0.1);
 	remove("stats1.txt");
 	for(int i=0;i<5000;++i){
 		Grille1->run();
@@ -173,14 +180,15 @@ int main () {
 			Grille3->lavage();
 		}
 	}	
-	delete Grille3;*/
+	delete Grille3;
+*/
 	
 	// ===========================================================================
 	//                  DETERMINATION DES TRANSITIONS DE PHASE
 	// ===========================================================================
 	
-	
-	/*char etat_cur='C';
+/*
+	char etat_cur='C';
 	char etat_prev='C';
 	
 	for(float A=0.0;A<=50.0;A=A+5.0) {
@@ -199,7 +207,8 @@ int main () {
 			}
 			delete test;	
 		}
-	}*/
+	}
+*/
 	
 	return 0;
 }

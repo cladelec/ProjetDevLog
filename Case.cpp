@@ -67,16 +67,11 @@ void Case::set_bact(Bacterie* bact){
 	bact_=bact;
 }
 
-
-
-
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
 void Case::mort_bact(vector<Bacterie*> &pop) {
 	float proba=(rand()%100+1); //donne une proba entre 1 et 100
-	//cout<<proba<<endl;
-	//cout<<(bact_->Pdeath())*100<<endl;
 	if(bact_!=nullptr) {
 		if (proba<(bact_->Pdeath())*100) {
 			//on maj la concentration en métabolites dans la case

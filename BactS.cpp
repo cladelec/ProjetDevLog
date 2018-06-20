@@ -34,15 +34,13 @@ BactS::~BactS() {
 // ===========================================================================
 void BactS::metaboliser(Case* c) { 
 	c->set_B((c->Bout())-(c->Bout()*Rbb_));
-	//*B=*B-(*B)*Rbb_; 
 	B_=B_+c->Bout()*Rbb_-B_*Rbc_;
 	C_=C_+B_*Rbc_;
 	
-	//modif de la fitness 
+	//modification de la fitness 
 	if(C_>Wmin_) { 
 		w_=C_;
 	} else { 
 		w_=0;
 	}
 }
-

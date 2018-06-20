@@ -46,4 +46,5 @@ inline int BactS::nb_instancesS(){
 	return nb_instancesS_;
 }
 
+
 #endif // BACTS_H_

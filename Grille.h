@@ -38,8 +38,6 @@ class Grille {
 		inline int W() const;
 		inline int H() const;
 		inline int A_init() const;
-		//inline vector<Bacterie> population() const;
-		//inline vector<Case> cases() const;
 
   // =========================================================================
   //                          Public Function members
